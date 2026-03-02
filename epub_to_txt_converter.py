@@ -1,8 +1,8 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
 """
-EPUB转TXT工具
-支持批量转换EPUB文件为TXT格式
+EPUB 转 TXT 工具
+支持批量转换 EPUB 文件为 TXT 格式
 """
 
 import tkinter as tk
@@ -19,7 +19,7 @@ import re
 class EpubToTxtConverter:
     def __init__(self, root):
         self.root = root
-        self.root.title("EPUB转TXT工具")
+        self.root.title("EPUB 转 TXT 工具")
         self.root.geometry("800x600")
         
         # 文件列表
@@ -40,7 +40,7 @@ class EpubToTxtConverter:
         main_frame.rowconfigure(2, weight=1)
         
         # 文件选择区域
-        file_frame = ttk.LabelFrame(main_frame, text="选择EPUB文件", padding="5")
+        file_frame = ttk.LabelFrame(main_frame, text="选择 EPUB 文件", padding="5")
         file_frame.grid(row=0, column=0, columnspan=3, sticky=(tk.W, tk.E), pady=(0, 10))
         file_frame.columnconfigure(1, weight=1)
         
@@ -103,39 +103,47 @@ class EpubToTxtConverter:
         self.log_text.grid(row=0, column=0, sticky=(tk.W, tk.E, tk.N, tk.S))
         
         # 设置默认输出目录
-        self.output_var.set(os.path.join(os.path.expanduser("~"), "Desktop"))
+        default_output = os.path.join(os.path.expanduser("~"), "Desktop")
+        if not os.path.exists(default_output):
+            default_output = os.path.expanduser("~")
+        self.output_var.set(default_output)
         
     def add_files(self):
-        """添加EPUB文件"""
+        """添加 EPUB 文件"""
         files = filedialog.askopenfilenames(
-            title="选择EPUB文件",
+            title="选择 EPUB 文件",
             filetypes=[("EPUB files", "*.epub"), ("All files", "*.*")]
         )
         
+        added_count = 0
         for file in files:
-            if file not in self.epub_files:
-                self.epub_files.append(file)
+            abs_path = os.path.abspath(file)
+            if abs_path not in [os.path.abspath(f) for f in self.epub_files]:
+                self.epub_files.append(abs_path)
                 self.file_listbox.insert(tk.END, os.path.basename(file))
+                added_count += 1
         
-        self.log(f"添加了 {len(files)} 个文件")
+        self.log(f"添加了 {added_count} 个文件")
     
     def add_folder(self):
-        """添加文件夹中的所有EPUB文件"""
-        folder = filedialog.askdirectory(title="选择包含EPUB文件的文件夹")
+        """添加文件夹中的所有 EPUB 文件"""
+        folder = filedialog.askdirectory(title="选择包含 EPUB 文件的文件夹")
         if not folder:
             return
             
         epub_files = list(Path(folder).glob("*.epub"))
         added_count = 0
         
+        existing_paths = [os.path.abspath(f) for f in self.epub_files]
         for file in epub_files:
-            file_str = str(file)
-            if file_str not in self.epub_files:
+            file_str = os.path.abspath(str(file))
+            if file_str not in existing_paths:
                 self.epub_files.append(file_str)
                 self.file_listbox.insert(tk.END, file.name)
                 added_count += 1
+                existing_paths.append(file_str)
         
-        self.log(f"从文件夹添加了 {added_count} 个EPUB文件")
+        self.log(f"从文件夹添加了 {added_count} 个 EPUB 文件")
     
     def clear_files(self):
         """清空文件列表"""
@@ -148,7 +156,7 @@ class EpubToTxtConverter:
         directory = filedialog.askdirectory(title="选择输出目录")
         if directory:
             self.output_var.set(directory)
-            self.log(f"输出目录设置为: {directory}")
+            self.log(f"输出目录设置为：{directory}")
     
     def log(self, message):
         """添加日志信息"""
@@ -159,39 +167,33 @@ class EpubToTxtConverter:
         self.root.update_idletasks()
     
     def extract_text_from_epub(self, epub_path):
-        """从EPUB文件提取文本内容"""
+        """从 EPUB 文件提取文本内容"""
         try:
-            # 忽略警告
             import warnings
             with warnings.catch_warnings():
                 warnings.simplefilter("ignore")
                 book = epub.read_epub(epub_path)
             text_content = []
             
-            # 获取书籍信息
             title = book.get_metadata('DC', 'title')
             author = book.get_metadata('DC', 'creator')
             
             if title:
-                text_content.append(f"书名: {title[0][0]}")
+                text_content.append(f"书名：{title[0][0]}")
             if author:
-                text_content.append(f"作者: {author[0][0]}")
+                text_content.append(f"作者：{author[0][0]}")
             text_content.append("-" * 50)
             text_content.append("")
             
-            # 提取章节内容
             for item in book.get_items():
                 if item.get_type() == ebooklib.ITEM_DOCUMENT:
                     soup = BeautifulSoup(item.get_content(), 'html.parser')
                     
-                    # 移除脚本和样式标签
                     for script in soup(["script", "style"]):
                         script.decompose()
                     
-                    # 获取文本内容
                     text = soup.get_text()
                     
-                    # 清理文本
                     lines = (line.strip() for line in text.splitlines())
                     chunks = (phrase.strip() for line in lines for phrase in line.split("  "))
                     text = '\n'.join(chunk for chunk in chunks if chunk)
@@ -203,10 +205,11 @@ class EpubToTxtConverter:
             return '\n'.join(text_content)
             
         except Exception as e:
-            raise Exception(f"处理EPUB文件时出错: {str(e)}")
+            self.log(f"错误详情：{str(e)}")
+            raise Exception(f"处理 EPUB 文件 {os.path.basename(epub_path)} 时出错：{str(e)}")
     
     def convert_single_file(self, epub_path, output_dir):
-        """转换单个EPUB文件"""
+        """转换单个 EPUB 文件"""
         try:
             # 提取文本
             text_content = self.extract_text_from_epub(epub_path)
@@ -219,7 +222,7 @@ class EpubToTxtConverter:
             with open(txt_path, 'w', encoding='utf-8') as f:
                 f.write(text_content)
             
-            return True, f"成功转换: {epub_name}.txt"
+            return True, f"成功转换：{epub_name}.txt"
             
         except Exception as e:
             return False, f"转换失败 {os.path.basename(epub_path)}: {str(e)}"
@@ -227,7 +230,7 @@ class EpubToTxtConverter:
     def start_conversion(self):
         """开始转换过程"""
         if not self.epub_files:
-            messagebox.showwarning("警告", "请先添加EPUB文件")
+            messagebox.showwarning("警告", "请先添加 EPUB 文件")
             return
         
         if not self.output_var.get():
@@ -255,7 +258,7 @@ class EpubToTxtConverter:
         success_count = 0
         
         for i, epub_file in enumerate(self.epub_files):
-            self.log(f"正在转换: {os.path.basename(epub_file)}")
+            self.log(f"正在转换：{os.path.basename(epub_file)}")
             
             success, message = self.convert_single_file(epub_file, output_dir)
             self.log(message)
@@ -269,10 +272,14 @@ class EpubToTxtConverter:
             self.root.update_idletasks()
         
         # 转换完成
-        self.log(f"转换完成! 成功: {success_count}/{total_files}")
+        self.log(f"转换完成！成功：{success_count}/{total_files}")
         self.convert_button.config(state=tk.NORMAL)
         
-        messagebox.showinfo("完成", f"转换完成!\n成功转换: {success_count}/{total_files} 个文件")
+        # 重置进度条
+        self.progress['value'] = 0
+        self.progress_label.config(text="0/0")
+        
+        messagebox.showinfo("完成", f"转换完成!\n成功转换：{success_count}/{total_files} 个文件")
 
 
 def main():
