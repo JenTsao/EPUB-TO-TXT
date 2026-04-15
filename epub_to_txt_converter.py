@@ -10,10 +10,6 @@ from tkinter import ttk, filedialog, messagebox, scrolledtext
 import os
 import threading
 from pathlib import Path
-import ebooklib
-from ebooklib import epub
-from bs4 import BeautifulSoup
-import chardet
 import gc
 
 try:
@@ -33,6 +29,9 @@ class EbookConverter:
         self.root.title("电子书转 TXT 工具 v2.0")
         self.root.geometry("900x650")
         
+        # 加载窗口大小设置
+        self.load_window_size()
+        
         self.files = []
         self.output_format = tk.StringVar(value='txt')
         self.converting = False
@@ -40,6 +39,9 @@ class EbookConverter:
         self.setup_ui()
         if DND_SUPPORTED:
             self.setup_drag_drop()
+        
+        # 窗口关闭时保存设置
+        self.root.protocol("WM_DELETE_WINDOW", self.on_close)
         
     def setup_ui(self):
         main_frame = ttk.Frame(self.root, padding="10")
@@ -123,11 +125,43 @@ class EbookConverter:
         self.log_text = scrolledtext.ScrolledText(log_frame, height=8, state=tk.DISABLED)
         self.log_text.grid(row=0, column=0, sticky=(tk.W, tk.E, tk.N, tk.S))
         
-        default_output = os.path.join(os.path.expanduser("~"), "Desktop")
-        if not os.path.exists(default_output):
-            default_output = os.path.expanduser("~")
-        self.output_var.set(default_output)
+        # 使用Path对象处理路径
+        default_output = Path.home() / "Desktop"
+        if not default_output.exists():
+            default_output = Path.home()
+        self.output_var.set(str(default_output))
         
+    def load_window_size(self):
+        """加载保存的窗口大小"""
+        try:
+            import json
+            config_path = Path.home() / ".ebook_converter_config.json"
+            if config_path.exists():
+                with open(config_path, 'r', encoding='utf-8') as f:
+                    config = json.load(f)
+                if "window_size" in config:
+                    size = config["window_size"]
+                    self.root.geometry(f"{size[0]}x{size[1]}")
+        except Exception:
+            pass
+    
+    def save_window_size(self):
+        """保存窗口大小"""
+        try:
+            import json
+            config_path = Path.home() / ".ebook_converter_config.json"
+            size = self.root.winfo_width(), self.root.winfo_height()
+            config = {"window_size": size}
+            with open(config_path, 'w', encoding='utf-8') as f:
+                json.dump(config, f)
+        except Exception:
+            pass
+    
+    def on_close(self):
+        """窗口关闭处理"""
+        self.save_window_size()
+        self.root.quit()
+    
     def setup_drag_drop(self):
         self.root.drop_target_register(DND_FILES)
         self.root.dnd_bind('<<Drop>>', self.handle_drop)
@@ -284,6 +318,8 @@ class EbookConverter:
         except ImportError:
             has_mobi_lib = False
             self.log("警告：mobi 库未安装，使用备用方法")
+            self.log("提示：建议安装 mobi 库以获得更好的 MOBI 文件处理效果")
+            self.log("安装命令：pip install mobi")
         
         if has_mobi_lib:
             try:
@@ -308,8 +344,21 @@ class EbookConverter:
             encoding = self.detect_encoding(data)
             text = data.decode(encoding, errors='ignore')
             return self.clean_text(text)
+        except FileNotFoundError:
+            error_msg = f"备用方法失败：文件不存在 - {mobi_path}"
+            self.log(error_msg)
+            raise FileNotFoundError(error_msg)
+        except PermissionError:
+            error_msg = f"备用方法失败：权限不足，无法读取文件 - {mobi_path}"
+            self.log(error_msg)
+            raise PermissionError(error_msg)
+        except UnicodeDecodeError as e:
+            error_msg = f"备用方法失败：编码解码错误，无法解析文件内容 - {str(e)}"
+            self.log(error_msg)
+            raise
         except Exception as e:
-            self.log(f"备用方法失败：{str(e)}")
+            error_msg = f"备用方法失败：{str(e)}"
+            self.log(error_msg)
             raise
     
     def extract_from_txt(self, txt_path):
