@@ -172,13 +172,14 @@ class EbookConverter:
         
         for path in files:
             path = path.strip('{}')
-            if os.path.isdir(path):
-                added = self.add_folder_files(path)
+            path_obj = Path(path)
+            if path_obj.is_dir():
+                added = self.add_folder_files(str(path_obj))
                 added_count += added
-            elif os.path.isfile(path):
-                ext = Path(path).suffix.lower()
+            elif path_obj.is_file():
+                ext = path_obj.suffix.lower()
                 if ext in SUPPORTED_INPUT_FORMATS:
-                    if self.add_single_file(path):
+                    if self.add_single_file(str(path_obj)):
                         added_count += 1
                 else:
                     self.log(f"不支持的格式：{ext}")
@@ -195,12 +196,12 @@ class EbookConverter:
         return count
     
     def add_single_file(self, file_path):
-        abs_path = os.path.abspath(file_path)
+        abs_path = str(Path(file_path).absolute())
         # 检查文件是否已存在（大小写不敏感）
-        existing_paths = [os.path.abspath(f).lower() for f in self.files]
+        existing_paths = [str(Path(f).absolute()).lower() for f in self.files]
         if abs_path.lower() not in existing_paths:
             self.files.append(abs_path)
-            self.file_listbox.insert(tk.END, os.path.basename(file_path))
+            self.file_listbox.insert(tk.END, Path(file_path).name)
             return True
         return False
         
@@ -244,23 +245,27 @@ class EbookConverter:
         self.root.update_idletasks()
     
     def detect_encoding(self, data):
-        result = chardet.detect(data)
-        encoding = result['encoding']
-        
-        # 常见编码别名处理
-        encoding_map = {
-            'gb2312': 'gb18030',
-            'gbk': 'gb18030',
-            'ascii': 'utf-8',
-            'iso-8859-1': 'utf-8'
-        }
-        
-        if encoding:
-            encoding = encoding.lower()
-            if encoding in encoding_map:
-                return encoding_map[encoding]
-            return encoding
-        return 'utf-8'
+        import chardet
+        try:
+            result = chardet.detect(data)
+            encoding = result['encoding']
+            
+            # 常见编码别名处理
+            encoding_map = {
+                'gb2312': 'gb18030',
+                'gbk': 'gb18030',
+                'ascii': 'utf-8',
+                'iso-8859-1': 'utf-8'
+            }
+            
+            if encoding:
+                encoding = encoding.lower()
+                if encoding in encoding_map:
+                    return encoding_map[encoding]
+                return encoding
+            return 'utf-8'
+        except Exception:
+            return 'utf-8'
     
     def extract_text_from_file(self, file_path):
         ext = Path(file_path).suffix.lower()
@@ -278,38 +283,49 @@ class EbookConverter:
     
     def extract_from_epub(self, epub_path):
         import warnings
-        with warnings.catch_warnings():
-            warnings.simplefilter("ignore")
-            book = epub.read_epub(epub_path)
+        from ebooklib import epub
+        from bs4 import BeautifulSoup
         
-        text_content = []
-        
-        title = book.get_metadata('DC', 'title')
-        author = book.get_metadata('DC', 'creator')
-        
-        if title:
-            text_content.append(f"书名：{title[0][0]}")
-        if author:
-            text_content.append(f"作者：{author[0][0]}")
-        text_content.append("=" * 50)
-        text_content.append("")
-        
-        for item in book.get_items():
-            if item.get_type() == ebooklib.ITEM_DOCUMENT:
-                soup = BeautifulSoup(item.get_content(), 'html.parser')
-                
-                for script in soup(["script", "style"]):
-                    script.decompose()
-                
-                text = soup.get_text()
-                text = self.clean_text(text)
-                
-                if text.strip():
-                    text_content.append(text)
-                    text_content.append("")
-        
-        gc.collect()
-        return '\n'.join(text_content)
+        try:
+            with warnings.catch_warnings():
+                warnings.simplefilter("ignore")
+                book = epub.read_epub(epub_path)
+            
+            text_content = []
+            
+            title = book.get_metadata('DC', 'title')
+            author = book.get_metadata('DC', 'creator')
+            
+            if title:
+                text_content.append(f"书名：{title[0][0]}")
+            if author:
+                text_content.append(f"作者：{author[0][0]}")
+            text_content.append("=" * 50)
+            text_content.append("")
+            
+            for item in book.get_items():
+                if item.get_type() == 1:  # ITEM_DOCUMENT
+                    try:
+                        content = item.get_content()
+                        soup = BeautifulSoup(content, 'html.parser')
+                        
+                        for script in soup(["script", "style"]):
+                            script.decompose()
+                        
+                        text = soup.get_text()
+                        text = self.clean_text(text)
+                        
+                        if text.strip():
+                            text_content.append(text)
+                            text_content.append("")
+                    except Exception as e:
+                        self.log(f"处理 EPUB 项目时出错：{str(e)}")
+            
+            gc.collect()
+            return '\n'.join(text_content)
+        except Exception as e:
+            self.log(f"EPUB 提取失败：{str(e)}")
+            raise
     
     def extract_from_mobi(self, mobi_path):
         try:
@@ -362,28 +378,55 @@ class EbookConverter:
             raise
     
     def extract_from_txt(self, txt_path):
-        with open(txt_path, 'rb') as f:
-            data = f.read()
-        
-        encoding = self.detect_encoding(data)
-        text = data.decode(encoding, errors='ignore')
-        
-        return self.clean_text(text)
+        try:
+            with open(txt_path, 'rb') as f:
+                data = f.read()
+            
+            encoding = self.detect_encoding(data)
+            text = data.decode(encoding, errors='ignore')
+            
+            return self.clean_text(text)
+        except FileNotFoundError:
+            error_msg = f"TXT 文件不存在 - {txt_path}"
+            self.log(error_msg)
+            raise FileNotFoundError(error_msg)
+        except PermissionError:
+            error_msg = f"权限不足，无法读取 TXT 文件 - {txt_path}"
+            self.log(error_msg)
+            raise PermissionError(error_msg)
+        except Exception as e:
+            error_msg = f"读取 TXT 文件失败：{str(e)}"
+            self.log(error_msg)
+            raise
     
     def extract_from_html(self, html_path):
-        with open(html_path, 'rb') as f:
-            data = f.read()
-        
-        encoding = self.detect_encoding(data)
-        html_content = data.decode(encoding, errors='ignore')
-        
-        soup = BeautifulSoup(html_content, 'html.parser')
-        
-        for script in soup(["script", "style"]):
-            script.decompose()
-        
-        text = soup.get_text()
-        return self.clean_text(text)
+        from bs4 import BeautifulSoup
+        try:
+            with open(html_path, 'rb') as f:
+                data = f.read()
+            
+            encoding = self.detect_encoding(data)
+            html_content = data.decode(encoding, errors='ignore')
+            
+            soup = BeautifulSoup(html_content, 'html.parser')
+            
+            for script in soup(["script", "style"]):
+                script.decompose()
+            
+            text = soup.get_text()
+            return self.clean_text(text)
+        except FileNotFoundError:
+            error_msg = f"HTML 文件不存在 - {html_path}"
+            self.log(error_msg)
+            raise FileNotFoundError(error_msg)
+        except PermissionError:
+            error_msg = f"权限不足，无法读取 HTML 文件 - {html_path}"
+            self.log(error_msg)
+            raise PermissionError(error_msg)
+        except Exception as e:
+            error_msg = f"读取 HTML 文件失败：{str(e)}"
+            self.log(error_msg)
+            raise
     
     def clean_text(self, text):
         import re
@@ -502,23 +545,26 @@ class EbookConverter:
             
             formatted_content, filename = self.convert_to_format(text_content, output_format, file_path)
             
-            output_path = os.path.join(output_dir, filename)
+            output_path = str(Path(output_dir) / filename)
             
             with open(output_path, 'w', encoding='utf-8') as f:
                 f.write(formatted_content)
             
+            # 减少内存使用
+            del text_content
+            del formatted_content
             gc.collect()
             
             return True, f"成功转换：{filename}"
             
         except FileNotFoundError:
-            return False, f"转换失败 {os.path.basename(file_path)}：文件不存在"
+            return False, f"转换失败 {Path(file_path).name}：文件不存在"
         except PermissionError:
-            return False, f"转换失败 {os.path.basename(file_path)}：权限不足"
+            return False, f"转换失败 {Path(file_path).name}：权限不足"
         except UnicodeDecodeError:
-            return False, f"转换失败 {os.path.basename(file_path)}：编码解码错误"
+            return False, f"转换失败 {Path(file_path).name}：编码解码错误"
         except Exception as e:
-            return False, f"转换失败 {os.path.basename(file_path)}：{str(e)}"
+            return False, f"转换失败 {Path(file_path).name}：{str(e)}"
     
     def start_conversion(self):
         if not self.files:
@@ -532,23 +578,27 @@ class EbookConverter:
         
         # 检查输出目录是否可写
         try:
-            test_file = os.path.join(output_dir, "test_write.txt")
+            test_file = Path(output_dir) / "test_write.txt"
             with open(test_file, 'w') as f:
                 f.write("")
-            os.remove(test_file)
+            test_file.unlink()
         except Exception as e:
             messagebox.showerror("错误", f"输出目录不可写：{str(e)}")
             return
         
         # 检查输入文件是否可访问
         for file_path in self.files:
-            if not os.path.exists(file_path):
+            file_path_obj = Path(file_path)
+            if not file_path_obj.exists():
                 messagebox.showerror("错误", f"文件不存在：{file_path}")
                 return
-            if not os.path.isfile(file_path):
+            if not file_path_obj.is_file():
                 messagebox.showerror("错误", f"不是有效的文件：{file_path}")
                 return
-            if not os.access(file_path, os.R_OK):
+            try:
+                with open(file_path_obj, 'rb') as f:
+                    pass
+            except PermissionError:
                 messagebox.showerror("错误", f"文件不可读：{file_path}")
                 return
         
@@ -562,7 +612,8 @@ class EbookConverter:
         output_dir = self.output_var.get()
         output_format = self.output_format.get()
         
-        os.makedirs(output_dir, exist_ok=True)
+        # 确保输出目录存在
+        Path(output_dir).mkdir(parents=True, exist_ok=True)
         
         self.convert_button.config(state=tk.DISABLED)
         self.status_label.config(text="转换中...")
@@ -574,7 +625,7 @@ class EbookConverter:
         success_count = 0
         
         for i, file_path in enumerate(self.files):
-            self.log(f"正在转换：{os.path.basename(file_path)}")
+            self.log(f"正在转换：{Path(file_path).name}")
             
             success, message = self.convert_single_file(file_path, output_dir, output_format)
             self.log(message)
