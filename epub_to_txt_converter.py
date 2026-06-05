@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
 """
-EPUB 转 TXT 工具 v2.0
+EPUB 转 TXT 工具 v2.1 (修复优化版)
 支持批量转换电子书为多种格式
 """
 
@@ -10,14 +10,34 @@ from tkinter import ttk, filedialog, messagebox, scrolledtext
 import os
 import threading
 from pathlib import Path
-import gc
 
+# 检测拖拽库
 try:
     from tkinterdnd2 import DND_FILES, TkinterDnD
     DND_SUPPORTED = True
 except ImportError:
     DND_SUPPORTED = False
 
+# 检测核心转换库
+MISSING_LIBS = []
+try:
+    from bs4 import BeautifulSoup
+except ImportError:
+    MISSING_LIBS.append("beautifulsoup4")
+try:
+    from ebooklib import epub
+except ImportError:
+    MISSING_LIBS.append("ebooklib")
+try:
+    import mobi
+    HAS_MOBI = True
+except ImportError:
+    HAS_MOBI = False
+    MISSING_LIBS.append("mobi")
+try:
+    import chardet
+except ImportError:
+    MISSING_LIBS.append("chardet")
 
 SUPPORTED_INPUT_FORMATS = ['.epub', '.mobi', '.txt', '.html', '.htm']
 SUPPORTED_OUTPUT_FORMATS = ['txt', 'md', 'html']
@@ -26,10 +46,9 @@ SUPPORTED_OUTPUT_FORMATS = ['txt', 'md', 'html']
 class EbookConverter:
     def __init__(self, root):
         self.root = root
-        self.root.title("电子书转 TXT 工具 v2.0")
+        self.root.title("电子书转 TXT 工具 v2.1")
         self.root.geometry("900x650")
         
-        # 加载窗口大小设置
         self.load_window_size()
         
         self.files = []
@@ -39,10 +58,17 @@ class EbookConverter:
         self.setup_ui()
         if DND_SUPPORTED:
             self.setup_drag_drop()
-        
-        # 窗口关闭时保存设置
+            
         self.root.protocol("WM_DELETE_WINDOW", self.on_close)
         
+        # 启动时检查依赖库
+        if MISSING_LIBS:
+            self.root.after(500, self.warn_missing_libs)
+            
+    def warn_missing_libs(self):
+        msg = "检测到缺失以下依赖库，部分功能将无法使用：\n" + ", ".join(MISSING_LIBS) + "\n\n请在终端执行：\npip install " + " ".join(MISSING_LIBS)
+        messagebox.showwarning("依赖缺失", msg)
+
     def setup_ui(self):
         main_frame = ttk.Frame(self.root, padding="10")
         main_frame.grid(row=0, column=0, sticky=(tk.W, tk.E, tk.N, tk.S))
@@ -62,7 +88,7 @@ class EbookConverter:
         
         drag_hint = "提示：支持拖拽文件或文件夹到窗口"
         if not DND_SUPPORTED:
-            drag_hint += " (需安装 tkinterdnd2)"
+            drag_hint += " (需安装 tkinterdnd2 才支持拖拽)"
         ttk.Label(file_frame, text=drag_hint, foreground="gray").grid(row=1, column=0, columnspan=3, sticky=tk.W, pady=(5, 0))
         
         output_frame = ttk.LabelFrame(main_frame, text="输出设置", padding="5")
@@ -125,14 +151,12 @@ class EbookConverter:
         self.log_text = scrolledtext.ScrolledText(log_frame, height=8, state=tk.DISABLED)
         self.log_text.grid(row=0, column=0, sticky=(tk.W, tk.E, tk.N, tk.S))
         
-        # 使用Path对象处理路径
         default_output = Path.home() / "Desktop"
         if not default_output.exists():
             default_output = Path.home()
         self.output_var.set(str(default_output))
         
     def load_window_size(self):
-        """加载保存的窗口大小"""
         try:
             import json
             config_path = Path.home() / ".ebook_converter_config.json"
@@ -146,7 +170,6 @@ class EbookConverter:
             pass
     
     def save_window_size(self):
-        """保存窗口大小"""
         try:
             import json
             config_path = Path.home() / ".ebook_converter_config.json"
@@ -158,7 +181,6 @@ class EbookConverter:
             pass
     
     def on_close(self):
-        """窗口关闭处理"""
         self.save_window_size()
         self.root.quit()
     
@@ -197,7 +219,6 @@ class EbookConverter:
     
     def add_single_file(self, file_path):
         abs_path = str(Path(file_path).absolute())
-        # 检查文件是否已存在（大小写不敏感）
         existing_paths = [str(Path(f).absolute()).lower() for f in self.files]
         if abs_path.lower() not in existing_paths:
             self.files.append(abs_path)
@@ -236,40 +257,59 @@ class EbookConverter:
         if directory:
             self.output_var.set(directory)
             self.log(f"输出目录设置为：{directory}")
-    
+
+    # ---------------- 线程安全的 UI 更新 ---------------- #
     def log(self, message):
+        """线程安全的日志输出"""
+        self.root.after(0, self._log_ui, message)
+        
+    def _log_ui(self, message):
         self.log_text.config(state=tk.NORMAL)
         self.log_text.insert(tk.END, f"{message}\n")
         self.log_text.see(tk.END)
         self.log_text.config(state=tk.DISABLED)
-        self.root.update_idletasks()
-    
+
+    def update_progress_ui(self, value, total, msg):
+        """线程安全的进度更新"""
+        self.progress['value'] = value
+        self.progress_label.config(text=f"{value}/{total}")
+        self.status_label.config(text="转换中..." if value < total else "完成")
+        self.log(msg)
+        
+    def finalize_ui(self, success_count, total):
+        """线程安全的完成状态更新"""
+        self.log(f"全部任务结束！成功：{success_count}/{total}")
+        self.progress['value'] = 0
+        self.progress_label.config(text="0/0")
+        self.status_label.config(text="就绪")
+        self.convert_button.config(state=tk.NORMAL)
+        self.converting = False
+        messagebox.showinfo("完成", f"转换完成！\n成功转换：{success_count}/{total} 个文件")
+
+    # ---------------- 核心提取逻辑 ---------------- #
     def detect_encoding(self, data):
-        import chardet
         try:
+            import chardet
             result = chardet.detect(data)
             encoding = result['encoding']
             
-            # 常见编码别名处理
             encoding_map = {
                 'gb2312': 'gb18030',
                 'gbk': 'gb18030',
                 'ascii': 'utf-8',
                 'iso-8859-1': 'utf-8'
             }
-            
             if encoding:
                 encoding = encoding.lower()
-                if encoding in encoding_map:
-                    return encoding_map[encoding]
-                return encoding
+                return encoding_map.get(encoding, encoding)
+            return 'utf-8'
+        except ImportError:
             return 'utf-8'
         except Exception:
             return 'utf-8'
     
     def extract_text_from_file(self, file_path):
         ext = Path(file_path).suffix.lower()
-        
         if ext == '.epub':
             return self.extract_from_epub(file_path)
         elif ext == '.mobi':
@@ -283,16 +323,18 @@ class EbookConverter:
     
     def extract_from_epub(self, epub_path):
         import warnings
-        from ebooklib import epub
-        from bs4 import BeautifulSoup
-        
+        try:
+            from ebooklib import epub
+            from bs4 import BeautifulSoup
+        except ImportError:
+            raise ImportError("未安装 ebooklib 或 bs4 库，无法处理 EPUB。")
+
         try:
             with warnings.catch_warnings():
                 warnings.simplefilter("ignore")
                 book = epub.read_epub(epub_path)
             
             text_content = []
-            
             title = book.get_metadata('DC', 'title')
             author = book.get_metadata('DC', 'creator')
             
@@ -300,16 +342,18 @@ class EbookConverter:
                 text_content.append(f"书名：{title[0][0]}")
             if author:
                 text_content.append(f"作者：{author[0][0]}")
-            text_content.append("=" * 50)
-            text_content.append("")
+            if title or author:
+                text_content.append("---") # 修改BUG: 用 --- 替代 50个等号
+                text_content.append("")
             
             for item in book.get_items():
-                if item.get_type() == 1:  # ITEM_DOCUMENT
+                # 修改BUG: 使用常量 ITEM_DOCUMENT (值为 9)
+                if item.get_type() == epub.ITEM_DOCUMENT:
                     try:
                         content = item.get_content()
                         soup = BeautifulSoup(content, 'html.parser')
                         
-                        for script in soup(["script", "style"]):
+                        for script in soup(["script", "style", "svg"]):
                             script.decompose()
                         
                         text = soup.get_text()
@@ -319,160 +363,93 @@ class EbookConverter:
                             text_content.append(text)
                             text_content.append("")
                     except Exception as e:
-                        self.log(f"处理 EPUB 项目时出错：{str(e)}")
+                        self.log(f"处理 EPUB 章节时跳过出错内容：{str(e)}")
             
-            gc.collect()
             return '\n'.join(text_content)
         except Exception as e:
-            self.log(f"EPUB 提取失败：{str(e)}")
-            raise
+            raise RuntimeError(f"EPUB 提取失败：{str(e)}")
     
     def extract_from_mobi(self, mobi_path):
+        if not HAS_MOBI:
+            raise ImportError("未安装 mobi 库，无法处理 MOBI 文件，请先执行 `pip install mobi`")
+            
         try:
             import mobi
-            has_mobi_lib = True
-        except ImportError:
-            has_mobi_lib = False
-            self.log("警告：mobi 库未安装，使用备用方法")
-            self.log("提示：建议安装 mobi 库以获得更好的 MOBI 文件处理效果")
-            self.log("安装命令：pip install mobi")
-        
-        if has_mobi_lib:
-            try:
-                extractor = mobi.MobiExtractor(mobi_path)
-                html_content = extractor.get_book_text()
-                
-                if html_content:
-                    soup = BeautifulSoup(html_content, 'html.parser')
-                    for script in soup(["script", "style"]):
-                        script.decompose()
-                    text = soup.get_text()
-                    return self.clean_text(text)
-                else:
-                    self.log("MOBI 内容为空，使用备用方法")
-            except Exception as e:
-                self.log(f"MOBI 提取失败：{str(e)}，使用备用方法")
-        
-        # 备用方法：直接读取文件内容
-        try:
-            with open(mobi_path, 'rb') as f:
-                data = f.read()
-            encoding = self.detect_encoding(data)
-            text = data.decode(encoding, errors='ignore')
-            return self.clean_text(text)
-        except FileNotFoundError:
-            error_msg = f"备用方法失败：文件不存在 - {mobi_path}"
-            self.log(error_msg)
-            raise FileNotFoundError(error_msg)
-        except PermissionError:
-            error_msg = f"备用方法失败：权限不足，无法读取文件 - {mobi_path}"
-            self.log(error_msg)
-            raise PermissionError(error_msg)
-        except UnicodeDecodeError as e:
-            error_msg = f"备用方法失败：编码解码错误，无法解析文件内容 - {str(e)}"
-            self.log(error_msg)
-            raise
+            from bs4 import BeautifulSoup
+            
+            # mobi 提取可能会创建临时文件夹
+            extractor = mobi.MobiExtractor(mobi_path)
+            html_content = extractor.get_book_text()
+            
+            if html_content:
+                soup = BeautifulSoup(html_content, 'html.parser')
+                for script in soup(["script", "style"]):
+                    script.decompose()
+                text = soup.get_text()
+                return self.clean_text(text)
+            else:
+                raise ValueError("MOBI 文件内部没有有效文本内容")
         except Exception as e:
-            error_msg = f"备用方法失败：{str(e)}"
-            self.log(error_msg)
-            raise
+            raise RuntimeError(f"MOBI 解析错误：{str(e)}")
     
     def extract_from_txt(self, txt_path):
         try:
             with open(txt_path, 'rb') as f:
                 data = f.read()
-            
             encoding = self.detect_encoding(data)
             text = data.decode(encoding, errors='ignore')
-            
             return self.clean_text(text)
-        except FileNotFoundError:
-            error_msg = f"TXT 文件不存在 - {txt_path}"
-            self.log(error_msg)
-            raise FileNotFoundError(error_msg)
-        except PermissionError:
-            error_msg = f"权限不足，无法读取 TXT 文件 - {txt_path}"
-            self.log(error_msg)
-            raise PermissionError(error_msg)
         except Exception as e:
-            error_msg = f"读取 TXT 文件失败：{str(e)}"
-            self.log(error_msg)
-            raise
+            raise RuntimeError(f"TXT 读取失败：{str(e)}")
     
     def extract_from_html(self, html_path):
-        from bs4 import BeautifulSoup
         try:
+            from bs4 import BeautifulSoup
             with open(html_path, 'rb') as f:
                 data = f.read()
-            
             encoding = self.detect_encoding(data)
             html_content = data.decode(encoding, errors='ignore')
-            
             soup = BeautifulSoup(html_content, 'html.parser')
-            
             for script in soup(["script", "style"]):
                 script.decompose()
-            
             text = soup.get_text()
             return self.clean_text(text)
-        except FileNotFoundError:
-            error_msg = f"HTML 文件不存在 - {html_path}"
-            self.log(error_msg)
-            raise FileNotFoundError(error_msg)
-        except PermissionError:
-            error_msg = f"权限不足，无法读取 HTML 文件 - {html_path}"
-            self.log(error_msg)
-            raise PermissionError(error_msg)
         except Exception as e:
-            error_msg = f"读取 HTML 文件失败：{str(e)}"
-            self.log(error_msg)
-            raise
+            raise RuntimeError(f"HTML 读取失败：{str(e)}")
     
     def clean_text(self, text):
         import re
-        
-        # 替换多个连续空格为单个空格
         text = re.sub(r'\s{2,}', ' ', text)
+        text = text.replace('\t', ' ').replace('\xa0', ' ')
         
-        # 替换制表符为空格
-        text = text.replace('\t', ' ')
-        
-        # 替换非断空格为普通空格
-        text = text.replace('\xa0', ' ')
-        
-        # 处理行尾空格
         lines = text.splitlines()
         cleaned_lines = []
-        
         for line in lines:
-            # 去除行尾空格
             line = line.rstrip()
-            # 保留空行以维持段落结构
             if line or (cleaned_lines and cleaned_lines[-1]):
                 cleaned_lines.append(line)
-        
         return '\n'.join(cleaned_lines)
     
     def convert_to_format(self, text_content, output_format, file_path):
         base_name = Path(file_path).stem
-        
         if output_format == 'txt':
             return text_content, f"{base_name}.txt"
         
         elif output_format == 'md':
             lines = text_content.split('\n')
             md_lines = []
-            
             for line in lines:
-                if line.startswith('=') and len(line) > 10:
-                    md_lines.append(f"# {line.strip('=').strip()}\n")
+                if line == '---':
+                    md_lines.append("---\n")
+                elif line.startswith('=') and len(line) >= 3:
+                    clean_line = line.strip('=').strip()
+                    if clean_line: # 避免空标题
+                        md_lines.append(f"# {clean_line}\n")
                 elif line.strip():
                     md_lines.append(line)
                 else:
                     md_lines.append('')
-            
-            md_content = '\n'.join(md_lines)
-            return md_content, f"{base_name}.md"
+            return '\n'.join(md_lines), f"{base_name}.md"
         
         elif output_format == 'html':
             html_template = '''<!DOCTYPE html>
@@ -481,12 +458,13 @@ class EbookConverter:
     <meta charset="UTF-8">
     <title>{title}</title>
     <style>
-        body {{ font-family: "Microsoft YaHei", Arial, sans-serif; margin: 40px; line-height: 1.6; }}
+        body {{ font-family: "Microsoft YaHei", Arial, sans-serif; margin: 40px; line-height: 1.6; max-width: 800px; margin: 40px auto; padding: 0 20px; }}
         h1 {{ color: #333; border-bottom: 2px solid #4CAF50; padding-bottom: 10px; }}
         h2 {{ color: #444; border-bottom: 1px solid #ddd; padding-bottom: 5px; }}
         h3 {{ color: #555; }}
         p {{ text-indent: 2em; margin-bottom: 1em; }}
-        .metadata {{ background-color: #f5f5f5; padding: 15px; border-radius: 5px; margin-bottom: 20px; }}
+        .metadata {{ background-color: #f5f5f5; padding: 15px; border-radius: 5px; margin-bottom: 20px; text-indent: 0; }}
+        .metadata p {{ text-indent: 0; margin: 5px 0; }}
     </style>
 </head>
 <body>
@@ -497,35 +475,35 @@ class EbookConverter:
             lines = text_content.split('\n')
             html_body = []
             
-            # 识别元数据部分
             metadata_started = False
             metadata_ended = False
             metadata_lines = []
             
             for line in lines:
-                if line.startswith('书名：') or line.startswith('作者：'):
-                    if not metadata_started:
-                        metadata_started = True
+                # 处理元数据
+                if not metadata_ended and (line.startswith('书名：') or line.startswith('作者：')):
+                    metadata_started = True
                     metadata_lines.append(line)
-                elif metadata_started and line.startswith('='):
+                elif metadata_started and not metadata_ended and line == '---':
                     metadata_ended = True
-                    # 添加元数据部分
                     if metadata_lines:
                         html_body.append('<div class="metadata">')
                         for meta_line in metadata_lines:
                             html_body.append(f"<p>{meta_line}</p>")
                         html_body.append('</div>')
-                    # 添加标题
-                    html_body.append(f"<h1>{line.strip('=').strip()}</h1>")
-                elif line.startswith('=') and len(line) > 10:
-                    # 根据等号数量确定标题层级
-                    equals_count = len(line) - len(line.lstrip('='))
-                    if equals_count >= 10:
-                        html_body.append(f"<h1>{line.strip('=').strip()}</h1>")
-                    elif equals_count >= 6:
-                        html_body.append(f"<h2>{line.strip('=').strip()}</h2>")
-                    else:
-                        html_body.append(f"<h3>{line.strip('=').strip()}</h3>")
+                # 兼容普通分割线与旧版等号标题
+                elif line == '---' and metadata_ended:
+                    html_body.append("<hr>")
+                elif line.startswith('=') and len(line) >= 3:
+                    clean_line = line.strip('=').strip()
+                    if clean_line:
+                        equals_count = len(line) - len(line.lstrip('='))
+                        if equals_count >= 10:
+                            html_body.append(f"<h1>{clean_line}</h1>")
+                        elif equals_count >= 6:
+                            html_body.append(f"<h2>{clean_line}</h2>")
+                        else:
+                            html_body.append(f"<h3>{clean_line}</h3>")
                 elif line.strip():
                     html_body.append(f"<p>{line}</p>")
                 else:
@@ -536,33 +514,20 @@ class EbookConverter:
                 body='\n'.join(html_body)
             )
             return html_content, f"{base_name}.html"
-        
+            
         return text_content, f"{base_name}.txt"
     
     def convert_single_file(self, file_path, output_dir, output_format):
         try:
             text_content = self.extract_text_from_file(file_path)
-            
             formatted_content, filename = self.convert_to_format(text_content, output_format, file_path)
             
             output_path = str(Path(output_dir) / filename)
-            
             with open(output_path, 'w', encoding='utf-8') as f:
                 f.write(formatted_content)
             
-            # 减少内存使用
-            del text_content
-            del formatted_content
-            gc.collect()
-            
             return True, f"成功转换：{filename}"
             
-        except FileNotFoundError:
-            return False, f"转换失败 {Path(file_path).name}：文件不存在"
-        except PermissionError:
-            return False, f"转换失败 {Path(file_path).name}：权限不足"
-        except UnicodeDecodeError:
-            return False, f"转换失败 {Path(file_path).name}：编码解码错误"
         except Exception as e:
             return False, f"转换失败 {Path(file_path).name}：{str(e)}"
     
@@ -576,7 +541,6 @@ class EbookConverter:
             messagebox.showwarning("警告", "请选择输出目录")
             return
         
-        # 检查输出目录是否可写
         try:
             test_file = Path(output_dir) / "test_write.txt"
             with open(test_file, 'w') as f:
@@ -586,67 +550,36 @@ class EbookConverter:
             messagebox.showerror("错误", f"输出目录不可写：{str(e)}")
             return
         
-        # 检查输入文件是否可访问
-        for file_path in self.files:
-            file_path_obj = Path(file_path)
-            if not file_path_obj.exists():
-                messagebox.showerror("错误", f"文件不存在：{file_path}")
-                return
-            if not file_path_obj.is_file():
-                messagebox.showerror("错误", f"不是有效的文件：{file_path}")
-                return
-            try:
-                with open(file_path_obj, 'rb') as f:
-                    pass
-            except PermissionError:
-                messagebox.showerror("错误", f"文件不可读：{file_path}")
-                return
-        
         if self.converting:
             return
         
         self.converting = True
-        threading.Thread(target=self.convert_files, daemon=True).start()
+        self.convert_button.config(state=tk.DISABLED)
+        # 启动后台线程执行转换
+        threading.Thread(target=self.convert_files_thread, daemon=True).start()
     
-    def convert_files(self):
+    def convert_files_thread(self):
         output_dir = self.output_var.get()
         output_format = self.output_format.get()
-        
-        # 确保输出目录存在
         Path(output_dir).mkdir(parents=True, exist_ok=True)
         
-        self.convert_button.config(state=tk.DISABLED)
-        self.status_label.config(text="转换中...")
-        
         total_files = len(self.files)
-        self.progress['maximum'] = total_files
-        self.progress['value'] = 0
-        
         success_count = 0
         
+        self.root.after(0, lambda: self.progress.config(maximum=total_files))
+        
         for i, file_path in enumerate(self.files):
-            self.log(f"正在转换：{Path(file_path).name}")
-            
+            self.log(f"正在处理：{Path(file_path).name} ...")
             success, message = self.convert_single_file(file_path, output_dir, output_format)
-            self.log(message)
             
             if success:
                 success_count += 1
             
-            self.progress['value'] = i + 1
-            self.progress_label.config(text=f"{i + 1}/{total_files}")
-            self.root.update_idletasks()
+            # UI 更新推送到主线程
+            self.root.after(0, self.update_progress_ui, i + 1, total_files, message)
         
-        self.log(f"转换完成！成功：{success_count}/{total_files}")
-        
-        self.progress['value'] = 0
-        self.progress_label.config(text="0/0")
-        self.status_label.config(text="完成")
-        
-        self.convert_button.config(state=tk.NORMAL)
-        self.converting = False
-        
-        messagebox.showinfo("完成", f"转换完成！\n成功转换：{success_count}/{total_files} 个文件")
+        # 结束处理推送到主线程
+        self.root.after(0, self.finalize_ui, success_count, total_files)
 
 
 def main():
@@ -657,7 +590,6 @@ def main():
     
     app = EbookConverter(root)
     root.mainloop()
-
 
 if __name__ == "__main__":
     main()
