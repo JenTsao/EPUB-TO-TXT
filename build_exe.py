@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
 """
-电子书转换工具 v2.0 打包脚本
+电子书转换工具 v2.1 打包脚本
 使用 PyInstaller 将 Python 程序打包成 exe 文件
 """
 
@@ -27,7 +27,7 @@ def clean_build():
 
 def build_exe():
     """构建 exe 文件"""
-    print("开始构建电子书转换工具 v2.0...")
+    print("开始构建电子书转换工具 v2.1...")
     
     # PyInstaller 命令参数
     cmd = [
@@ -45,7 +45,6 @@ def build_exe():
         '--hidden-import=chardet',
         '--hidden-import=tkinterdnd2',
         '--clean',
-        '--upx',
         '--exclude-module=tkinter.ttk',
         '--exclude-module=tkinter.scrolledtext',
         '--exclude-module=tkinter.filedialog',
@@ -109,7 +108,7 @@ def post_build_cleanup():
         spec_file.unlink()
 
 def main():
-    print("电子书转换工具 v2.0 - 打包脚本")
+    print("电子书转换工具 v2.1 - 打包脚本")
     print("=" * 40)
     
     try:
