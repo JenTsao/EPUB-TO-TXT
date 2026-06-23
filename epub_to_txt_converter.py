@@ -218,9 +218,9 @@ class EbookConverter:
         return count
     
     def add_single_file(self, file_path):
-        abs_path = str(Path(file_path).absolute())
-        existing_paths = [str(Path(f).absolute()).lower() for f in self.files]
-        if abs_path.lower() not in existing_paths:
+        abs_path = str(Path(file_path).resolve())
+        existing_paths = [str(Path(f).resolve()) for f in self.files]
+        if abs_path not in existing_paths:
             self.files.append(abs_path)
             self.file_listbox.insert(tk.END, Path(file_path).name)
             return True
@@ -280,6 +280,7 @@ class EbookConverter:
         """线程安全的完成状态更新"""
         self.log(f"全部任务结束！成功：{success_count}/{total}")
         self.progress['value'] = 0
+        self.progress['maximum'] = 100
         self.progress_label.config(text="0/0")
         self.status_label.config(text="就绪")
         self.convert_button.config(state=tk.NORMAL)
@@ -297,7 +298,6 @@ class EbookConverter:
                 'gb2312': 'gb18030',
                 'gbk': 'gb18030',
                 'ascii': 'utf-8',
-                'iso-8859-1': 'utf-8'
             }
             if encoding:
                 encoding = encoding.lower()
@@ -376,19 +376,25 @@ class EbookConverter:
         try:
             import mobi
             from bs4 import BeautifulSoup
+            import shutil
             
-            # mobi 提取可能会创建临时文件夹
-            extractor = mobi.MobiExtractor(mobi_path)
-            html_content = extractor.get_book_text()
-            
-            if html_content:
-                soup = BeautifulSoup(html_content, 'html.parser')
-                for script in soup(["script", "style"]):
-                    script.decompose()
-                text = soup.get_text()
-                return self.clean_text(text)
-            else:
-                raise ValueError("MOBI 文件内部没有有效文本内容")
+            tempdir, filepath = mobi.extract(mobi_path)
+            try:
+                with open(filepath, 'r', encoding='utf-8', errors='ignore') as f:
+                    html_content = f.read()
+                
+                if html_content:
+                    soup = BeautifulSoup(html_content, 'html.parser')
+                    for script in soup(["script", "style"]):
+                        script.decompose()
+                    text = soup.get_text()
+                    return self.clean_text(text)
+                else:
+                    raise ValueError("MOBI 文件内部没有有效文本内容")
+            finally:
+                shutil.rmtree(tempdir, ignore_errors=True)
+        except RuntimeError:
+            raise
         except Exception as e:
             raise RuntimeError(f"MOBI 解析错误：{str(e)}")
     
@@ -419,7 +425,7 @@ class EbookConverter:
     
     def clean_text(self, text):
         import re
-        text = re.sub(r'\s{2,}', ' ', text)
+        text = re.sub(r'[ \t]{2,}', ' ', text)
         text = text.replace('\t', ' ').replace('\xa0', ' ')
         
         lines = text.splitlines()
@@ -480,7 +486,6 @@ class EbookConverter:
             metadata_lines = []
             
             for line in lines:
-                # 处理元数据
                 if not metadata_ended and (line.startswith('书名：') or line.startswith('作者：')):
                     metadata_started = True
                     metadata_lines.append(line)
@@ -491,9 +496,11 @@ class EbookConverter:
                         for meta_line in metadata_lines:
                             html_body.append(f"<p>{meta_line}</p>")
                         html_body.append('</div>')
-                # 兼容普通分割线与旧版等号标题
-                elif line == '---' and metadata_ended:
-                    html_body.append("<hr>")
+                elif line == '---':
+                    if not metadata_started:
+                        html_body.append("<hr>")
+                    elif metadata_ended:
+                        html_body.append("<hr>")
                 elif line.startswith('=') and len(line) >= 3:
                     clean_line = line.strip('=').strip()
                     if clean_line:
@@ -542,6 +549,7 @@ class EbookConverter:
             return
         
         try:
+            Path(output_dir).mkdir(parents=True, exist_ok=True)
             test_file = Path(output_dir) / "test_write.txt"
             with open(test_file, 'w') as f:
                 f.write("")

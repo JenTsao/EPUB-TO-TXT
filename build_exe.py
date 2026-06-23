@@ -45,11 +45,7 @@ def build_exe():
         '--hidden-import=chardet',
         '--hidden-import=tkinterdnd2',
         '--clean',
-        '--exclude-module=tkinter.ttk',
-        '--exclude-module=tkinter.scrolledtext',
-        '--exclude-module=tkinter.filedialog',
-        '--exclude-module=tkinter.messagebox',
-        '--exclude-module=tkinter.dnd',
+
         '--version-file=version.txt',
         'epub_to_txt_converter.py'
     ]

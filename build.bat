@@ -17,10 +17,10 @@ if errorlevel 1 (
 echo 清理之前的构建文件...
 if exist build rmdir /s /q build
 if exist dist rmdir /s /q dist
-if exist "*.spec" del "*.spec"
+if exist *.spec del /q *.spec
 
 echo 开始打包...
-pyinstaller --onefile --windowed --name="EPUB转TXT工具" --clean epub_to_txt_converter.py
+pyinstaller --onefile --windowed --name="电子书转换工具" --clean epub_to_txt_converter.py
 
 if errorlevel 1 (
     echo 错误: 打包失败
@@ -29,9 +29,9 @@ if errorlevel 1 (
 )
 
 echo 移动exe文件...
-if exist "dist\EPUB转TXT工具.exe" (
-    move "dist\EPUB转TXT工具.exe" "EPUB转TXT工具.exe"
-    echo 成功生成: EPUB转TXT工具.exe
+if exist "dist\电子书转换工具.exe" (
+    move "dist\电子书转换工具.exe" "电子书转换工具.exe"
+    echo 成功生成: 电子书转换工具.exe
 ) else (
     echo 错误: 未找到生成的exe文件
     pause
@@ -41,12 +41,12 @@ if exist "dist\EPUB转TXT工具.exe" (
 echo 清理临时文件...
 if exist build rmdir /s /q build
 if exist dist rmdir /s /q dist
-if exist "*.spec" del "*.spec"
+if exist *.spec del /q *.spec
 
 echo.
 echo ========================================
 echo 打包完成！
-echo 生成文件: EPUB转TXT工具.exe
+echo 生成文件: 电子书转换工具.exe
 echo 可以直接运行，无需Python环境
 echo ========================================
 pause
