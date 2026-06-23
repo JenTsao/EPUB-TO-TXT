@@ -348,7 +348,7 @@ class EbookConverter:
             
             for item in book.get_items():
                 # 修改BUG: 使用常量 ITEM_DOCUMENT (值为 9)
-                if item.get_type() == epub.ITEM_DOCUMENT:
+                if item.get_type() == 9:
                     try:
                         content = item.get_content()
                         soup = BeautifulSoup(content, 'html.parser')
