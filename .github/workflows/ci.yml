@@ -2,6 +2,7 @@ name: CI
 
 on:
   push:
+    branches: ['**'] # 所有分支的推送都触发（仅定义 tags 时分支推送不会触发，必须显式声明）
     tags: ['v*']
     paths-ignore: ['**.md', 'LICENSE', '快速使用指南.txt']
   workflow_dispatch:
