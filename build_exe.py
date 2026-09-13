@@ -1,8 +1,8 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
 """
-电子书转换工具 v2.1 打包脚本
-使用 PyInstaller 将 Python 程序打包成 exe 文件
+电子书转换工具 v3.0 打包脚本
+使用 PyInstaller 将 PySide6 程序打包成 exe 文件
 """
 
 import os
@@ -14,22 +14,22 @@ from pathlib import Path
 def clean_build():
     """清理之前的构建文件"""
     dirs_to_clean = ['build', 'dist', '__pycache__']
-    
+
     for dir_name in dirs_to_clean:
         if os.path.exists(dir_name):
             shutil.rmtree(dir_name)
             print(f"已清理目录: {dir_name}")
-    
-    # 清理 spec 文件
+
     for spec_file in Path('.').glob('*.spec'):
         spec_file.unlink()
         print(f"已清理文件: {spec_file}")
 
 def build_exe():
     """构建 exe 文件"""
-    print("开始构建电子书转换工具 v2.1...")
-    
-    # PyInstaller 命令参数
+    print("开始构建电子书转换工具 v3.0...")
+
+    # PyInstaller 6.x 自带 PySide6 hook，自动收集 Qt DLL 与 plugins；
+    # 通过 exclude-module 裁剪未使用的 Qt 模块控制体积；禁用 UPX（压缩 Qt6 DLL 会崩溃且易触发杀软误报）。
     cmd = [
         'pyinstaller',
         '--onefile',
@@ -43,17 +43,24 @@ def build_exe():
         '--hidden-import=lxml',
         '--hidden-import=mobi',
         '--hidden-import=chardet',
-        '--hidden-import=tkinterdnd2',
+        '--hidden-import=pypdf',
+        '--hidden-import=docx',
+        '--exclude-module=PySide6.QtWebEngineCore',
+        '--exclude-module=PySide6.QtWebEngineWidgets',
+        '--exclude-module=PySide6.QtQml',
+        '--exclude-module=PySide6.QtQuick',
+        '--exclude-module=PySide6.QtNetwork',
+        '--exclude-module=PySide6.QtSql',
+        '--exclude-module=PySide6.QtTest',
+        '--noupx',
         '--clean',
-
         '--version-file=version.txt',
-        'epub_to_txt_converter.py'
+        'main.py'
     ]
-    
-    # 如果没有图标文件，移除图标参数
+
     if not os.path.exists('icon.ico'):
         cmd = [arg for arg in cmd if not arg.startswith('--icon')]
-    
+
     try:
         result = subprocess.run(cmd, check=True, capture_output=True, text=True)
         print("✓ 打包成功！")
@@ -65,17 +72,19 @@ def build_exe():
 
 def create_icon():
     """创建简单的图标文件"""
+    if os.path.exists('icon.ico'):
+        return True
     try:
         from PIL import Image, ImageDraw
-        
+
         img = Image.new('RGBA', (64, 64), (70, 130, 180, 255))
         draw = ImageDraw.Draw(img)
-        
+
         draw.rectangle([10, 15, 54, 50], fill=(255, 255, 255, 255), outline=(0, 0, 0, 255))
         draw.rectangle([10, 15, 15, 50], fill=(200, 200, 200, 255))
         for y in range(20, 45, 4):
             draw.line([18, y, 50, y], fill=(150, 150, 150, 255))
-        
+
         img.save('icon.ico', format='ICO')
         print("✓ 已创建图标文件")
         return True
@@ -92,31 +101,29 @@ def post_build_cleanup():
             target_path.unlink()
         shutil.move(str(exe_path), str(target_path))
         print(f"✓ exe 文件已移动到: {target_path}")
-    
-    # 清理构建文件
+
     if os.path.exists('build'):
         shutil.rmtree('build')
     if os.path.exists('dist'):
         shutil.rmtree('dist')
-    
-    # 清理 spec 文件
+
     for spec_file in Path('.').glob('*.spec'):
         spec_file.unlink()
 
 def main():
-    print("电子书转换工具 v2.1 - 打包脚本")
+    print("电子书转换工具 v3.0 - 打包脚本")
     print("=" * 40)
-    
+
     try:
         import PyInstaller
         print(f"✓ PyInstaller 版本: {PyInstaller.__version__}")
     except ImportError:
         print("✗ 未安装 PyInstaller，请运行: pip install pyinstaller")
         return False
-    
+
     clean_build()
     create_icon()
-    
+
     if build_exe():
         post_build_cleanup()
         print("\n" + "=" * 40)

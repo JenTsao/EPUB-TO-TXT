@@ -1,0 +1,1105 @@
+('J:\\PROJECT\\Python project\\EPUB TO '
+ 'TXT\\build\\ebook_debug2\\ebook_debug2.pkg',
+ {'BINARY': True,
+  'DATA': True,
+  'EXECUTABLE': True,
+  'EXTENSION': True,
+  'PYMODULE': True,
+  'PYSOURCE': True,
+  'PYZ': False,
+  'SPLASH': True,
+  'SYMLINK': False},
+ [('pyi-contents-directory _internal', '', 'OPTION'),
+  ('PYZ-00.pyz',
+   'J:\\PROJECT\\Python project\\EPUB TO TXT\\build\\ebook_debug2\\PYZ-00.pyz',
+   'PYZ'),
+  ('struct',
+   'J:\\PROJECT\\Python project\\EPUB TO '
+   'TXT\\build\\ebook_debug2\\localpycs\\struct.pyc',
+   'PYMODULE'),
+  ('pyimod01_archive',
+   'J:\\PROJECT\\Python project\\EPUB TO '
+   'TXT\\build\\ebook_debug2\\localpycs\\pyimod01_archive.pyc',
+   'PYMODULE'),
+  ('pyimod02_importers',
+   'J:\\PROJECT\\Python project\\EPUB TO '
+   'TXT\\build\\ebook_debug2\\localpycs\\pyimod02_importers.pyc',
+   'PYMODULE'),
+  ('pyimod03_ctypes',
+   'J:\\PROJECT\\Python project\\EPUB TO '
+   'TXT\\build\\ebook_debug2\\localpycs\\pyimod03_ctypes.pyc',
+   'PYMODULE'),
+  ('pyimod04_pywin32',
+   'J:\\PROJECT\\Python project\\EPUB TO '
+   'TXT\\build\\ebook_debug2\\localpycs\\pyimod04_pywin32.pyc',
+   'PYMODULE'),
+  ('pyiboot01_bootstrap',
+   'J:\\PROJECT\\Python project\\EPUB TO '
+   'TXT\\.venv\\Lib\\site-packages\\PyInstaller\\loader\\pyiboot01_bootstrap.py',
+   'PYSOURCE'),
+  ('pyi_rth_inspect',
+   'J:\\PROJECT\\Python project\\EPUB TO '
+   'TXT\\.venv\\Lib\\site-packages\\PyInstaller\\hooks\\rthooks\\pyi_rth_inspect.py',
+   'PYSOURCE'),
+  ('pyi_rth_pkgutil',
+   'J:\\PROJECT\\Python project\\EPUB TO '
+   'TXT\\.venv\\Lib\\site-packages\\PyInstaller\\hooks\\rthooks\\pyi_rth_pkgutil.py',
+   'PYSOURCE'),
+  ('pyi_rth_multiprocessing',
+   'J:\\PROJECT\\Python project\\EPUB TO '
+   'TXT\\.venv\\Lib\\site-packages\\PyInstaller\\hooks\\rthooks\\pyi_rth_multiprocessing.py',
+   'PYSOURCE'),
+  ('pyi_rth_pyside6',
+   'J:\\PROJECT\\Python project\\EPUB TO '
+   'TXT\\.venv\\Lib\\site-packages\\PyInstaller\\hooks\\rthooks\\pyi_rth_pyside6.py',
+   'PYSOURCE'),
+  ('debug_run',
+   'J:\\PROJECT\\Python project\\EPUB TO TXT\\debug_run.py',
+   'PYSOURCE'),
+  ('python314.dll', 'J:\\CODE\\PYTHON314.6\\python314.dll', 'BINARY'),
+  ('PySide6\\opengl32sw.dll',
+   'J:\\PROJECT\\Python project\\EPUB TO '
+   'TXT\\.venv\\Lib\\site-packages\\PySide6\\opengl32sw.dll',
+   'BINARY'),
+  ('libssl-3-x64.dll',
+   'J:\\CODE\\PHP\\php-8.4.8-nts-Win32-vs17-x64\\libssl-3-x64.dll',
+   'BINARY'),
+  ('PySide6\\plugins\\tls\\qcertonlybackend.dll',
+   'J:\\PROJECT\\Python project\\EPUB TO '
+   'TXT\\.venv\\Lib\\site-packages\\PySide6\\plugins\\tls\\qcertonlybackend.dll',
+   'BINARY'),
+  ('libcrypto-3-x64.dll',
+   'J:\\CODE\\PHP\\php-8.4.8-nts-Win32-vs17-x64\\libcrypto-3-x64.dll',
+   'BINARY'),
+  ('PySide6\\plugins\\tls\\qschannelbackend.dll',
+   'J:\\PROJECT\\Python project\\EPUB TO '
+   'TXT\\.venv\\Lib\\site-packages\\PySide6\\plugins\\tls\\qschannelbackend.dll',
+   'BINARY'),
+  ('PySide6\\plugins\\networkinformation\\qnetworklistmanager.dll',
+   'J:\\PROJECT\\Python project\\EPUB TO '
+   'TXT\\.venv\\Lib\\site-packages\\PySide6\\plugins\\networkinformation\\qnetworklistmanager.dll',
+   'BINARY'),
+  ('PySide6\\plugins\\tls\\qopensslbackend.dll',
+   'J:\\PROJECT\\Python project\\EPUB TO '
+   'TXT\\.venv\\Lib\\site-packages\\PySide6\\plugins\\tls\\qopensslbackend.dll',
+   'BINARY'),
+  ('PySide6\\plugins\\iconengines\\qsvgicon.dll',
+   'J:\\PROJECT\\Python project\\EPUB TO '
+   'TXT\\.venv\\Lib\\site-packages\\PySide6\\plugins\\iconengines\\qsvgicon.dll',
+   'BINARY'),
+  ('PySide6\\plugins\\platforminputcontexts\\qtvirtualkeyboardplugin.dll',
+   'J:\\PROJECT\\Python project\\EPUB TO '
+   'TXT\\.venv\\Lib\\site-packages\\PySide6\\plugins\\platforminputcontexts\\qtvirtualkeyboardplugin.dll',
+   'BINARY'),
+  ('PySide6\\plugins\\imageformats\\qtiff.dll',
+   'J:\\PROJECT\\Python project\\EPUB TO '
+   'TXT\\.venv\\Lib\\site-packages\\PySide6\\plugins\\imageformats\\qtiff.dll',
+   'BINARY'),
+  ('PySide6\\plugins\\imageformats\\qwbmp.dll',
+   'J:\\PROJECT\\Python project\\EPUB TO '
+   'TXT\\.venv\\Lib\\site-packages\\PySide6\\plugins\\imageformats\\qwbmp.dll',
+   'BINARY'),
+  ('PySide6\\plugins\\imageformats\\qicns.dll',
+   'J:\\PROJECT\\Python project\\EPUB TO '
+   'TXT\\.venv\\Lib\\site-packages\\PySide6\\plugins\\imageformats\\qicns.dll',
+   'BINARY'),
+  ('PySide6\\plugins\\platforms\\qminimal.dll',
+   'J:\\PROJECT\\Python project\\EPUB TO '
+   'TXT\\.venv\\Lib\\site-packages\\PySide6\\plugins\\platforms\\qminimal.dll',
+   'BINARY'),
+  ('PySide6\\plugins\\platforms\\qdirect2d.dll',
+   'J:\\PROJECT\\Python project\\EPUB TO '
+   'TXT\\.venv\\Lib\\site-packages\\PySide6\\plugins\\platforms\\qdirect2d.dll',
+   'BINARY'),
+  ('PySide6\\plugins\\imageformats\\qsvg.dll',
+   'J:\\PROJECT\\Python project\\EPUB TO '
+   'TXT\\.venv\\Lib\\site-packages\\PySide6\\plugins\\imageformats\\qsvg.dll',
+   'BINARY'),
+  ('PySide6\\plugins\\imageformats\\qpdf.dll',
+   'J:\\PROJECT\\Python project\\EPUB TO '
+   'TXT\\.venv\\Lib\\site-packages\\PySide6\\plugins\\imageformats\\qpdf.dll',
+   'BINARY'),
+  ('PySide6\\plugins\\platforms\\qoffscreen.dll',
+   'J:\\PROJECT\\Python project\\EPUB TO '
+   'TXT\\.venv\\Lib\\site-packages\\PySide6\\plugins\\platforms\\qoffscreen.dll',
+   'BINARY'),
+  ('PySide6\\plugins\\imageformats\\qgif.dll',
+   'J:\\PROJECT\\Python project\\EPUB TO '
+   'TXT\\.venv\\Lib\\site-packages\\PySide6\\plugins\\imageformats\\qgif.dll',
+   'BINARY'),
+  ('PySide6\\plugins\\imageformats\\qico.dll',
+   'J:\\PROJECT\\Python project\\EPUB TO '
+   'TXT\\.venv\\Lib\\site-packages\\PySide6\\plugins\\imageformats\\qico.dll',
+   'BINARY'),
+  ('PySide6\\plugins\\imageformats\\qjpeg.dll',
+   'J:\\PROJECT\\Python project\\EPUB TO '
+   'TXT\\.venv\\Lib\\site-packages\\PySide6\\plugins\\imageformats\\qjpeg.dll',
+   'BINARY'),
+  ('PySide6\\plugins\\imageformats\\qwebp.dll',
+   'J:\\PROJECT\\Python project\\EPUB TO '
+   'TXT\\.venv\\Lib\\site-packages\\PySide6\\plugins\\imageformats\\qwebp.dll',
+   'BINARY'),
+  ('PySide6\\plugins\\imageformats\\qtga.dll',
+   'J:\\PROJECT\\Python project\\EPUB TO '
+   'TXT\\.venv\\Lib\\site-packages\\PySide6\\plugins\\imageformats\\qtga.dll',
+   'BINARY'),
+  ('PySide6\\plugins\\platforms\\qwindows.dll',
+   'J:\\PROJECT\\Python project\\EPUB TO '
+   'TXT\\.venv\\Lib\\site-packages\\PySide6\\plugins\\platforms\\qwindows.dll',
+   'BINARY'),
+  ('PySide6\\plugins\\generic\\qtuiotouchplugin.dll',
+   'J:\\PROJECT\\Python project\\EPUB TO '
+   'TXT\\.venv\\Lib\\site-packages\\PySide6\\plugins\\generic\\qtuiotouchplugin.dll',
+   'BINARY'),
+  ('PySide6\\plugins\\styles\\qmodernwindowsstyle.dll',
+   'J:\\PROJECT\\Python project\\EPUB TO '
+   'TXT\\.venv\\Lib\\site-packages\\PySide6\\plugins\\styles\\qmodernwindowsstyle.dll',
+   'BINARY'),
+  ('_zstd.pyd', 'J:\\CODE\\PYTHON314.6\\DLLs\\_zstd.pyd', 'EXTENSION'),
+  ('_lzma.pyd', 'J:\\CODE\\PYTHON314.6\\DLLs\\_lzma.pyd', 'EXTENSION'),
+  ('_bz2.pyd', 'J:\\CODE\\PYTHON314.6\\DLLs\\_bz2.pyd', 'EXTENSION'),
+  ('_decimal.pyd', 'J:\\CODE\\PYTHON314.6\\DLLs\\_decimal.pyd', 'EXTENSION'),
+  ('_hashlib.pyd', 'J:\\CODE\\PYTHON314.6\\DLLs\\_hashlib.pyd', 'EXTENSION'),
+  ('select.pyd', 'J:\\CODE\\PYTHON314.6\\DLLs\\select.pyd', 'EXTENSION'),
+  ('_socket.pyd', 'J:\\CODE\\PYTHON314.6\\DLLs\\_socket.pyd', 'EXTENSION'),
+  ('unicodedata.pyd',
+   'J:\\CODE\\PYTHON314.6\\DLLs\\unicodedata.pyd',
+   'EXTENSION'),
+  ('_ssl.pyd', 'J:\\CODE\\PYTHON314.6\\DLLs\\_ssl.pyd', 'EXTENSION'),
+  ('_multiprocessing.pyd',
+   'J:\\CODE\\PYTHON314.6\\DLLs\\_multiprocessing.pyd',
+   'EXTENSION'),
+  ('pyexpat.pyd', 'J:\\CODE\\PYTHON314.6\\DLLs\\pyexpat.pyd', 'EXTENSION'),
+  ('_ctypes.pyd', 'J:\\CODE\\PYTHON314.6\\DLLs\\_ctypes.pyd', 'EXTENSION'),
+  ('_queue.pyd', 'J:\\CODE\\PYTHON314.6\\DLLs\\_queue.pyd', 'EXTENSION'),
+  ('lxml\\etree.cp314-win_amd64.pyd',
+   'J:\\PROJECT\\Python project\\EPUB TO '
+   'TXT\\.venv\\Lib\\site-packages\\lxml\\etree.cp314-win_amd64.pyd',
+   'EXTENSION'),
+  ('lxml\\_elementpath.cp314-win_amd64.pyd',
+   'J:\\PROJECT\\Python project\\EPUB TO '
+   'TXT\\.venv\\Lib\\site-packages\\lxml\\_elementpath.cp314-win_amd64.pyd',
+   'EXTENSION'),
+  ('_overlapped.pyd',
+   'J:\\CODE\\PYTHON314.6\\DLLs\\_overlapped.pyd',
+   'EXTENSION'),
+  ('_asyncio.pyd', 'J:\\CODE\\PYTHON314.6\\DLLs\\_asyncio.pyd', 'EXTENSION'),
+  ('_uuid.pyd', 'J:\\CODE\\PYTHON314.6\\DLLs\\_uuid.pyd', 'EXTENSION'),
+  ('_wmi.pyd', 'J:\\CODE\\PYTHON314.6\\DLLs\\_wmi.pyd', 'EXTENSION'),
+  ('chardet\\pipeline\\validity__mypyc.cp314-win_amd64.pyd',
+   'J:\\PROJECT\\Python project\\EPUB TO '
+   'TXT\\.venv\\Lib\\site-packages\\chardet\\pipeline\\validity__mypyc.cp314-win_amd64.pyd',
+   'EXTENSION'),
+  ('chardet\\pipeline\\validity.cp314-win_amd64.pyd',
+   'J:\\PROJECT\\Python project\\EPUB TO '
+   'TXT\\.venv\\Lib\\site-packages\\chardet\\pipeline\\validity.cp314-win_amd64.pyd',
+   'EXTENSION'),
+  ('chardet\\pipeline\\utf8__mypyc.cp314-win_amd64.pyd',
+   'J:\\PROJECT\\Python project\\EPUB TO '
+   'TXT\\.venv\\Lib\\site-packages\\chardet\\pipeline\\utf8__mypyc.cp314-win_amd64.pyd',
+   'EXTENSION'),
+  ('chardet\\pipeline\\utf8.cp314-win_amd64.pyd',
+   'J:\\PROJECT\\Python project\\EPUB TO '
+   'TXT\\.venv\\Lib\\site-packages\\chardet\\pipeline\\utf8.cp314-win_amd64.pyd',
+   'EXTENSION'),
+  ('chardet\\pipeline\\utf1632__mypyc.cp314-win_amd64.pyd',
+   'J:\\PROJECT\\Python project\\EPUB TO '
+   'TXT\\.venv\\Lib\\site-packages\\chardet\\pipeline\\utf1632__mypyc.cp314-win_amd64.pyd',
+   'EXTENSION'),
+  ('chardet\\pipeline\\utf1632.cp314-win_amd64.pyd',
+   'J:\\PROJECT\\Python project\\EPUB TO '
+   'TXT\\.venv\\Lib\\site-packages\\chardet\\pipeline\\utf1632.cp314-win_amd64.pyd',
+   'EXTENSION'),
+  ('chardet\\pipeline\\structural__mypyc.cp314-win_amd64.pyd',
+   'J:\\PROJECT\\Python project\\EPUB TO '
+   'TXT\\.venv\\Lib\\site-packages\\chardet\\pipeline\\structural__mypyc.cp314-win_amd64.pyd',
+   'EXTENSION'),
+  ('chardet\\pipeline\\structural.cp314-win_amd64.pyd',
+   'J:\\PROJECT\\Python project\\EPUB TO '
+   'TXT\\.venv\\Lib\\site-packages\\chardet\\pipeline\\structural.cp314-win_amd64.pyd',
+   'EXTENSION'),
+  ('chardet\\pipeline\\statistical__mypyc.cp314-win_amd64.pyd',
+   'J:\\PROJECT\\Python project\\EPUB TO '
+   'TXT\\.venv\\Lib\\site-packages\\chardet\\pipeline\\statistical__mypyc.cp314-win_amd64.pyd',
+   'EXTENSION'),
+  ('chardet\\pipeline\\statistical.cp314-win_amd64.pyd',
+   'J:\\PROJECT\\Python project\\EPUB TO '
+   'TXT\\.venv\\Lib\\site-packages\\chardet\\pipeline\\statistical.cp314-win_amd64.pyd',
+   'EXTENSION'),
+  ('chardet\\pipeline\\postprocess__mypyc.cp314-win_amd64.pyd',
+   'J:\\PROJECT\\Python project\\EPUB TO '
+   'TXT\\.venv\\Lib\\site-packages\\chardet\\pipeline\\postprocess__mypyc.cp314-win_amd64.pyd',
+   'EXTENSION'),
+  ('chardet\\pipeline\\postprocess.cp314-win_amd64.pyd',
+   'J:\\PROJECT\\Python project\\EPUB TO '
+   'TXT\\.venv\\Lib\\site-packages\\chardet\\pipeline\\postprocess.cp314-win_amd64.pyd',
+   'EXTENSION'),
+  ('chardet\\pipeline\\orchestrator__mypyc.cp314-win_amd64.pyd',
+   'J:\\PROJECT\\Python project\\EPUB TO '
+   'TXT\\.venv\\Lib\\site-packages\\chardet\\pipeline\\orchestrator__mypyc.cp314-win_amd64.pyd',
+   'EXTENSION'),
+  ('chardet\\pipeline\\magic__mypyc.cp314-win_amd64.pyd',
+   'J:\\PROJECT\\Python project\\EPUB TO '
+   'TXT\\.venv\\Lib\\site-packages\\chardet\\pipeline\\magic__mypyc.cp314-win_amd64.pyd',
+   'EXTENSION'),
+  ('chardet\\pipeline\\magic.cp314-win_amd64.pyd',
+   'J:\\PROJECT\\Python project\\EPUB TO '
+   'TXT\\.venv\\Lib\\site-packages\\chardet\\pipeline\\magic.cp314-win_amd64.pyd',
+   'EXTENSION'),
+  ('chardet\\pipeline\\language__mypyc.cp314-win_amd64.pyd',
+   'J:\\PROJECT\\Python project\\EPUB TO '
+   'TXT\\.venv\\Lib\\site-packages\\chardet\\pipeline\\language__mypyc.cp314-win_amd64.pyd',
+   'EXTENSION'),
+  ('chardet\\pipeline\\language.cp314-win_amd64.pyd',
+   'J:\\PROJECT\\Python project\\EPUB TO '
+   'TXT\\.venv\\Lib\\site-packages\\chardet\\pipeline\\language.cp314-win_amd64.pyd',
+   'EXTENSION'),
+  ('chardet\\pipeline\\escape__mypyc.cp314-win_amd64.pyd',
+   'J:\\PROJECT\\Python project\\EPUB TO '
+   'TXT\\.venv\\Lib\\site-packages\\chardet\\pipeline\\escape__mypyc.cp314-win_amd64.pyd',
+   'EXTENSION'),
+  ('chardet\\pipeline\\escape.cp314-win_amd64.pyd',
+   'J:\\PROJECT\\Python project\\EPUB TO '
+   'TXT\\.venv\\Lib\\site-packages\\chardet\\pipeline\\escape.cp314-win_amd64.pyd',
+   'EXTENSION'),
+  ('chardet\\pipeline\\confusion__mypyc.cp314-win_amd64.pyd',
+   'J:\\PROJECT\\Python project\\EPUB TO '
+   'TXT\\.venv\\Lib\\site-packages\\chardet\\pipeline\\confusion__mypyc.cp314-win_amd64.pyd',
+   'EXTENSION'),
+  ('chardet\\pipeline\\confusion.cp314-win_amd64.pyd',
+   'J:\\PROJECT\\Python project\\EPUB TO '
+   'TXT\\.venv\\Lib\\site-packages\\chardet\\pipeline\\confusion.cp314-win_amd64.pyd',
+   'EXTENSION'),
+  ('chardet\\pipeline\\ascii__mypyc.cp314-win_amd64.pyd',
+   'J:\\PROJECT\\Python project\\EPUB TO '
+   'TXT\\.venv\\Lib\\site-packages\\chardet\\pipeline\\ascii__mypyc.cp314-win_amd64.pyd',
+   'EXTENSION'),
+  ('chardet\\pipeline\\ascii.cp314-win_amd64.pyd',
+   'J:\\PROJECT\\Python project\\EPUB TO '
+   'TXT\\.venv\\Lib\\site-packages\\chardet\\pipeline\\ascii.cp314-win_amd64.pyd',
+   'EXTENSION'),
+  ('chardet\\pipeline\\orchestrator.cp314-win_amd64.pyd',
+   'J:\\PROJECT\\Python project\\EPUB TO '
+   'TXT\\.venv\\Lib\\site-packages\\chardet\\pipeline\\orchestrator.cp314-win_amd64.pyd',
+   'EXTENSION'),
+  ('chardet\\_kernel.cp314-win_amd64.pyd',
+   'J:\\PROJECT\\Python project\\EPUB TO '
+   'TXT\\.venv\\Lib\\site-packages\\chardet\\_kernel.cp314-win_amd64.pyd',
+   'EXTENSION'),
+  ('lxml\\sax.cp314-win_amd64.pyd',
+   'J:\\PROJECT\\Python project\\EPUB TO '
+   'TXT\\.venv\\Lib\\site-packages\\lxml\\sax.cp314-win_amd64.pyd',
+   'EXTENSION'),
+  ('lxml\\objectify.cp314-win_amd64.pyd',
+   'J:\\PROJECT\\Python project\\EPUB TO '
+   'TXT\\.venv\\Lib\\site-packages\\lxml\\objectify.cp314-win_amd64.pyd',
+   'EXTENSION'),
+  ('lxml\\html\\diff.cp314-win_amd64.pyd',
+   'J:\\PROJECT\\Python project\\EPUB TO '
+   'TXT\\.venv\\Lib\\site-packages\\lxml\\html\\diff.cp314-win_amd64.pyd',
+   'EXTENSION'),
+  ('lxml\\html\\_difflib.cp314-win_amd64.pyd',
+   'J:\\PROJECT\\Python project\\EPUB TO '
+   'TXT\\.venv\\Lib\\site-packages\\lxml\\html\\_difflib.cp314-win_amd64.pyd',
+   'EXTENSION'),
+  ('lxml\\builder.cp314-win_amd64.pyd',
+   'J:\\PROJECT\\Python project\\EPUB TO '
+   'TXT\\.venv\\Lib\\site-packages\\lxml\\builder.cp314-win_amd64.pyd',
+   'EXTENSION'),
+  ('PySide6\\QtCore.pyd',
+   'J:\\PROJECT\\Python project\\EPUB TO '
+   'TXT\\.venv\\Lib\\site-packages\\PySide6\\QtCore.pyd',
+   'EXTENSION'),
+  ('shiboken6\\Shiboken.pyd',
+   'J:\\PROJECT\\Python project\\EPUB TO '
+   'TXT\\.venv\\Lib\\site-packages\\shiboken6\\Shiboken.pyd',
+   'EXTENSION'),
+  ('PySide6\\QtNetwork.pyd',
+   'J:\\PROJECT\\Python project\\EPUB TO '
+   'TXT\\.venv\\Lib\\site-packages\\PySide6\\QtNetwork.pyd',
+   'EXTENSION'),
+  ('PySide6\\QtGui.pyd',
+   'J:\\PROJECT\\Python project\\EPUB TO '
+   'TXT\\.venv\\Lib\\site-packages\\PySide6\\QtGui.pyd',
+   'EXTENSION'),
+  ('PySide6\\QtWidgets.pyd',
+   'J:\\PROJECT\\Python project\\EPUB TO '
+   'TXT\\.venv\\Lib\\site-packages\\PySide6\\QtWidgets.pyd',
+   'EXTENSION'),
+  ('api-ms-win-crt-locale-l1-1-0.dll',
+   'J:\\CODE\\JAVA21\\bin\\api-ms-win-crt-locale-l1-1-0.dll',
+   'BINARY'),
+  ('api-ms-win-crt-filesystem-l1-1-0.dll',
+   'J:\\CODE\\JAVA21\\bin\\api-ms-win-crt-filesystem-l1-1-0.dll',
+   'BINARY'),
+  ('api-ms-win-crt-math-l1-1-0.dll',
+   'J:\\CODE\\JAVA21\\bin\\api-ms-win-crt-math-l1-1-0.dll',
+   'BINARY'),
+  ('api-ms-win-crt-conio-l1-1-0.dll',
+   'J:\\CODE\\JAVA21\\bin\\api-ms-win-crt-conio-l1-1-0.dll',
+   'BINARY'),
+  ('api-ms-win-crt-string-l1-1-0.dll',
+   'J:\\CODE\\JAVA21\\bin\\api-ms-win-crt-string-l1-1-0.dll',
+   'BINARY'),
+  ('api-ms-win-crt-runtime-l1-1-0.dll',
+   'J:\\CODE\\JAVA21\\bin\\api-ms-win-crt-runtime-l1-1-0.dll',
+   'BINARY'),
+  ('api-ms-win-crt-time-l1-1-0.dll',
+   'J:\\CODE\\JAVA21\\bin\\api-ms-win-crt-time-l1-1-0.dll',
+   'BINARY'),
+  ('api-ms-win-crt-heap-l1-1-0.dll',
+   'J:\\CODE\\JAVA21\\bin\\api-ms-win-crt-heap-l1-1-0.dll',
+   'BINARY'),
+  ('api-ms-win-crt-stdio-l1-1-0.dll',
+   'J:\\CODE\\JAVA21\\bin\\api-ms-win-crt-stdio-l1-1-0.dll',
+   'BINARY'),
+  ('api-ms-win-crt-convert-l1-1-0.dll',
+   'J:\\CODE\\JAVA21\\bin\\api-ms-win-crt-convert-l1-1-0.dll',
+   'BINARY'),
+  ('api-ms-win-crt-environment-l1-1-0.dll',
+   'J:\\CODE\\JAVA21\\bin\\api-ms-win-crt-environment-l1-1-0.dll',
+   'BINARY'),
+  ('api-ms-win-crt-process-l1-1-0.dll',
+   'J:\\CODE\\JAVA21\\bin\\api-ms-win-crt-process-l1-1-0.dll',
+   'BINARY'),
+  ('VCRUNTIME140.dll', 'J:\\CODE\\PYTHON314.6\\VCRUNTIME140.dll', 'BINARY'),
+  ('api-ms-win-crt-utility-l1-1-0.dll',
+   'J:\\CODE\\JAVA21\\bin\\api-ms-win-crt-utility-l1-1-0.dll',
+   'BINARY'),
+  ('PySide6\\Qt6Core.dll',
+   'J:\\PROJECT\\Python project\\EPUB TO '
+   'TXT\\.venv\\Lib\\site-packages\\PySide6\\Qt6Core.dll',
+   'BINARY'),
+  ('PySide6\\Qt6Network.dll',
+   'J:\\PROJECT\\Python project\\EPUB TO '
+   'TXT\\.venv\\Lib\\site-packages\\PySide6\\Qt6Network.dll',
+   'BINARY'),
+  ('shiboken6\\MSVCP140.dll',
+   'J:\\PROJECT\\Python project\\EPUB TO '
+   'TXT\\.venv\\Lib\\site-packages\\shiboken6\\MSVCP140.dll',
+   'BINARY'),
+  ('VCRUNTIME140_1.dll', 'J:\\CODE\\PYTHON314.6\\VCRUNTIME140_1.dll', 'BINARY'),
+  ('PySide6\\Qt6Gui.dll',
+   'J:\\PROJECT\\Python project\\EPUB TO '
+   'TXT\\.venv\\Lib\\site-packages\\PySide6\\Qt6Gui.dll',
+   'BINARY'),
+  ('PySide6\\Qt6Svg.dll',
+   'J:\\PROJECT\\Python project\\EPUB TO '
+   'TXT\\.venv\\Lib\\site-packages\\PySide6\\Qt6Svg.dll',
+   'BINARY'),
+  ('PySide6\\Qt6VirtualKeyboard.dll',
+   'J:\\PROJECT\\Python project\\EPUB TO '
+   'TXT\\.venv\\Lib\\site-packages\\PySide6\\Qt6VirtualKeyboard.dll',
+   'BINARY'),
+  ('PySide6\\Qt6Pdf.dll',
+   'J:\\PROJECT\\Python project\\EPUB TO '
+   'TXT\\.venv\\Lib\\site-packages\\PySide6\\Qt6Pdf.dll',
+   'BINARY'),
+  ('PySide6\\Qt6Widgets.dll',
+   'J:\\PROJECT\\Python project\\EPUB TO '
+   'TXT\\.venv\\Lib\\site-packages\\PySide6\\Qt6Widgets.dll',
+   'BINARY'),
+  ('libcrypto-3.dll', 'J:\\CODE\\PYTHON314.6\\DLLs\\libcrypto-3.dll', 'BINARY'),
+  ('libssl-3.dll', 'J:\\CODE\\PYTHON314.6\\DLLs\\libssl-3.dll', 'BINARY'),
+  ('libffi-8.dll', 'J:\\CODE\\PYTHON314.6\\DLLs\\libffi-8.dll', 'BINARY'),
+  ('shiboken6\\shiboken6.abi3.dll',
+   'J:\\PROJECT\\Python project\\EPUB TO '
+   'TXT\\.venv\\Lib\\site-packages\\shiboken6\\shiboken6.abi3.dll',
+   'BINARY'),
+  ('python3.dll', 'J:\\CODE\\PYTHON314.6\\python3.dll', 'BINARY'),
+  ('PySide6\\MSVCP140.dll',
+   'J:\\PROJECT\\Python project\\EPUB TO '
+   'TXT\\.venv\\Lib\\site-packages\\PySide6\\MSVCP140.dll',
+   'BINARY'),
+  ('PySide6\\VCRUNTIME140.dll',
+   'J:\\PROJECT\\Python project\\EPUB TO '
+   'TXT\\.venv\\Lib\\site-packages\\PySide6\\VCRUNTIME140.dll',
+   'BINARY'),
+  ('PySide6\\VCRUNTIME140_1.dll',
+   'J:\\PROJECT\\Python project\\EPUB TO '
+   'TXT\\.venv\\Lib\\site-packages\\PySide6\\VCRUNTIME140_1.dll',
+   'BINARY'),
+  ('PySide6\\pyside6.abi3.dll',
+   'J:\\PROJECT\\Python project\\EPUB TO '
+   'TXT\\.venv\\Lib\\site-packages\\PySide6\\pyside6.abi3.dll',
+   'BINARY'),
+  ('shiboken6\\VCRUNTIME140.dll',
+   'J:\\PROJECT\\Python project\\EPUB TO '
+   'TXT\\.venv\\Lib\\site-packages\\shiboken6\\VCRUNTIME140.dll',
+   'BINARY'),
+  ('shiboken6\\VCRUNTIME140_1.dll',
+   'J:\\PROJECT\\Python project\\EPUB TO '
+   'TXT\\.venv\\Lib\\site-packages\\shiboken6\\VCRUNTIME140_1.dll',
+   'BINARY'),
+  ('PySide6\\MSVCP140_2.dll',
+   'J:\\PROJECT\\Python project\\EPUB TO '
+   'TXT\\.venv\\Lib\\site-packages\\PySide6\\MSVCP140_2.dll',
+   'BINARY'),
+  ('ucrtbase.dll', 'J:\\CODE\\JAVA21\\bin\\ucrtbase.dll', 'BINARY'),
+  ('api-ms-win-core-synch-l1-2-0.dll',
+   'J:\\CODE\\JAVA21\\bin\\api-ms-win-core-synch-l1-2-0.dll',
+   'BINARY'),
+  ('PySide6\\MSVCP140_1.dll',
+   'J:\\PROJECT\\Python project\\EPUB TO '
+   'TXT\\.venv\\Lib\\site-packages\\PySide6\\MSVCP140_1.dll',
+   'BINARY'),
+  ('PySide6\\Qt6Qml.dll',
+   'J:\\PROJECT\\Python project\\EPUB TO '
+   'TXT\\.venv\\Lib\\site-packages\\PySide6\\Qt6Qml.dll',
+   'BINARY'),
+  ('PySide6\\Qt6Quick.dll',
+   'J:\\PROJECT\\Python project\\EPUB TO '
+   'TXT\\.venv\\Lib\\site-packages\\PySide6\\Qt6Quick.dll',
+   'BINARY'),
+  ('api-ms-win-core-processenvironment-l1-1-0.dll',
+   'J:\\CODE\\JAVA21\\bin\\api-ms-win-core-processenvironment-l1-1-0.dll',
+   'BINARY'),
+  ('api-ms-win-core-memory-l1-1-0.dll',
+   'J:\\CODE\\JAVA21\\bin\\api-ms-win-core-memory-l1-1-0.dll',
+   'BINARY'),
+  ('api-ms-win-core-file-l1-1-0.dll',
+   'J:\\CODE\\JAVA21\\bin\\api-ms-win-core-file-l1-1-0.dll',
+   'BINARY'),
+  ('api-ms-win-core-synch-l1-1-0.dll',
+   'J:\\CODE\\JAVA21\\bin\\api-ms-win-core-synch-l1-1-0.dll',
+   'BINARY'),
+  ('api-ms-win-core-processthreads-l1-1-0.dll',
+   'J:\\CODE\\JAVA21\\bin\\api-ms-win-core-processthreads-l1-1-0.dll',
+   'BINARY'),
+  ('api-ms-win-core-datetime-l1-1-0.dll',
+   'J:\\CODE\\JAVA21\\bin\\api-ms-win-core-datetime-l1-1-0.dll',
+   'BINARY'),
+  ('api-ms-win-core-profile-l1-1-0.dll',
+   'J:\\CODE\\JAVA21\\bin\\api-ms-win-core-profile-l1-1-0.dll',
+   'BINARY'),
+  ('api-ms-win-core-string-l1-1-0.dll',
+   'J:\\CODE\\JAVA21\\bin\\api-ms-win-core-string-l1-1-0.dll',
+   'BINARY'),
+  ('api-ms-win-core-fibers-l1-1-1.dll',
+   'J:\\CODE\\JAVA21\\bin\\api-ms-win-core-fibers-l1-1-1.dll',
+   'BINARY'),
+  ('api-ms-win-core-interlocked-l1-1-0.dll',
+   'J:\\CODE\\JAVA21\\bin\\api-ms-win-core-interlocked-l1-1-0.dll',
+   'BINARY'),
+  ('api-ms-win-core-sysinfo-l1-2-0.dll',
+   'J:\\CODE\\JAVA21\\bin\\api-ms-win-core-sysinfo-l1-2-0.dll',
+   'BINARY'),
+  ('api-ms-win-core-file-l2-1-0.dll',
+   'J:\\CODE\\JAVA21\\bin\\api-ms-win-core-file-l2-1-0.dll',
+   'BINARY'),
+  ('api-ms-win-core-errorhandling-l1-1-0.dll',
+   'J:\\CODE\\JAVA21\\bin\\api-ms-win-core-errorhandling-l1-1-0.dll',
+   'BINARY'),
+  ('api-ms-win-core-util-l1-1-0.dll',
+   'J:\\CODE\\JAVA21\\bin\\api-ms-win-core-util-l1-1-0.dll',
+   'BINARY'),
+  ('api-ms-win-core-rtlsupport-l1-1-0.dll',
+   'J:\\CODE\\JAVA21\\bin\\api-ms-win-core-rtlsupport-l1-1-0.dll',
+   'BINARY'),
+  ('api-ms-win-core-sysinfo-l1-1-0.dll',
+   'J:\\CODE\\JAVA21\\bin\\api-ms-win-core-sysinfo-l1-1-0.dll',
+   'BINARY'),
+  ('api-ms-win-core-localization-l1-2-0.dll',
+   'J:\\CODE\\JAVA21\\bin\\api-ms-win-core-localization-l1-2-0.dll',
+   'BINARY'),
+  ('api-ms-win-core-kernel32-legacy-l1-1-1.dll',
+   'J:\\CODE\\JAVA21\\bin\\api-ms-win-core-kernel32-legacy-l1-1-1.dll',
+   'BINARY'),
+  ('api-ms-win-core-timezone-l1-1-0.dll',
+   'J:\\CODE\\JAVA21\\bin\\api-ms-win-core-timezone-l1-1-0.dll',
+   'BINARY'),
+  ('api-ms-win-core-console-l1-1-0.dll',
+   'J:\\CODE\\JAVA21\\bin\\api-ms-win-core-console-l1-1-0.dll',
+   'BINARY'),
+  ('api-ms-win-core-fibers-l1-1-0.dll',
+   'J:\\CODE\\JAVA21\\bin\\api-ms-win-core-fibers-l1-1-0.dll',
+   'BINARY'),
+  ('api-ms-win-core-debug-l1-1-0.dll',
+   'J:\\CODE\\JAVA21\\bin\\api-ms-win-core-debug-l1-1-0.dll',
+   'BINARY'),
+  ('api-ms-win-core-handle-l1-1-0.dll',
+   'J:\\CODE\\JAVA21\\bin\\api-ms-win-core-handle-l1-1-0.dll',
+   'BINARY'),
+  ('api-ms-win-core-heap-l1-1-0.dll',
+   'J:\\CODE\\JAVA21\\bin\\api-ms-win-core-heap-l1-1-0.dll',
+   'BINARY'),
+  ('api-ms-win-core-processthreads-l1-1-1.dll',
+   'J:\\CODE\\JAVA21\\bin\\api-ms-win-core-processthreads-l1-1-1.dll',
+   'BINARY'),
+  ('api-ms-win-core-namedpipe-l1-1-0.dll',
+   'J:\\CODE\\JAVA21\\bin\\api-ms-win-core-namedpipe-l1-1-0.dll',
+   'BINARY'),
+  ('api-ms-win-core-libraryloader-l1-1-0.dll',
+   'J:\\CODE\\JAVA21\\bin\\api-ms-win-core-libraryloader-l1-1-0.dll',
+   'BINARY'),
+  ('api-ms-win-core-file-l1-2-0.dll',
+   'J:\\CODE\\JAVA21\\bin\\api-ms-win-core-file-l1-2-0.dll',
+   'BINARY'),
+  ('PySide6\\Qt6OpenGL.dll',
+   'J:\\PROJECT\\Python project\\EPUB TO '
+   'TXT\\.venv\\Lib\\site-packages\\PySide6\\Qt6OpenGL.dll',
+   'BINARY'),
+  ('PySide6\\Qt6QmlMeta.dll',
+   'J:\\PROJECT\\Python project\\EPUB TO '
+   'TXT\\.venv\\Lib\\site-packages\\PySide6\\Qt6QmlMeta.dll',
+   'BINARY'),
+  ('PySide6\\Qt6QmlModels.dll',
+   'J:\\PROJECT\\Python project\\EPUB TO '
+   'TXT\\.venv\\Lib\\site-packages\\PySide6\\Qt6QmlModels.dll',
+   'BINARY'),
+  ('PySide6\\Qt6QmlWorkerScript.dll',
+   'J:\\PROJECT\\Python project\\EPUB TO '
+   'TXT\\.venv\\Lib\\site-packages\\PySide6\\Qt6QmlWorkerScript.dll',
+   'BINARY'),
+  ('docx\\templates\\default-docx-template\\customXml\\item1.xml',
+   'J:\\PROJECT\\Python project\\EPUB TO '
+   'TXT\\.venv\\Lib\\site-packages\\docx\\templates\\default-docx-template\\customXml\\item1.xml',
+   'DATA'),
+  ('docx\\templates\\default-docx-template\\word\\stylesWithEffects.xml',
+   'J:\\PROJECT\\Python project\\EPUB TO '
+   'TXT\\.venv\\Lib\\site-packages\\docx\\templates\\default-docx-template\\word\\stylesWithEffects.xml',
+   'DATA'),
+  ('docx\\templates\\default-docx-template\\word\\settings.xml',
+   'J:\\PROJECT\\Python project\\EPUB TO '
+   'TXT\\.venv\\Lib\\site-packages\\docx\\templates\\default-docx-template\\word\\settings.xml',
+   'DATA'),
+  ('docx\\templates\\default-docx-template\\word\\numbering.xml',
+   'J:\\PROJECT\\Python project\\EPUB TO '
+   'TXT\\.venv\\Lib\\site-packages\\docx\\templates\\default-docx-template\\word\\numbering.xml',
+   'DATA'),
+  ('docx\\templates\\default-docx-template\\_rels\\.rels',
+   'J:\\PROJECT\\Python project\\EPUB TO '
+   'TXT\\.venv\\Lib\\site-packages\\docx\\templates\\default-docx-template\\_rels\\.rels',
+   'DATA'),
+  ('docx\\templates\\default-docx-template\\word\\styles.xml',
+   'J:\\PROJECT\\Python project\\EPUB TO '
+   'TXT\\.venv\\Lib\\site-packages\\docx\\templates\\default-docx-template\\word\\styles.xml',
+   'DATA'),
+  ('docx\\templates\\default-docx-template\\docProps\\thumbnail.jpeg',
+   'J:\\PROJECT\\Python project\\EPUB TO '
+   'TXT\\.venv\\Lib\\site-packages\\docx\\templates\\default-docx-template\\docProps\\thumbnail.jpeg',
+   'DATA'),
+  ('docx\\templates\\default.docx',
+   'J:\\PROJECT\\Python project\\EPUB TO '
+   'TXT\\.venv\\Lib\\site-packages\\docx\\templates\\default.docx',
+   'DATA'),
+  ('docx\\py.typed',
+   'J:\\PROJECT\\Python project\\EPUB TO '
+   'TXT\\.venv\\Lib\\site-packages\\docx\\py.typed',
+   'DATA'),
+  ('docx\\templates\\default-docx-template\\word\\webSettings.xml',
+   'J:\\PROJECT\\Python project\\EPUB TO '
+   'TXT\\.venv\\Lib\\site-packages\\docx\\templates\\default-docx-template\\word\\webSettings.xml',
+   'DATA'),
+  ('docx\\templates\\default-styles.xml',
+   'J:\\PROJECT\\Python project\\EPUB TO '
+   'TXT\\.venv\\Lib\\site-packages\\docx\\templates\\default-styles.xml',
+   'DATA'),
+  ('docx\\templates\\default-docx-template\\docProps\\app.xml',
+   'J:\\PROJECT\\Python project\\EPUB TO '
+   'TXT\\.venv\\Lib\\site-packages\\docx\\templates\\default-docx-template\\docProps\\app.xml',
+   'DATA'),
+  ('docx\\templates\\default-footer.xml',
+   'J:\\PROJECT\\Python project\\EPUB TO '
+   'TXT\\.venv\\Lib\\site-packages\\docx\\templates\\default-footer.xml',
+   'DATA'),
+  ('docx\\templates\\default-settings.xml',
+   'J:\\PROJECT\\Python project\\EPUB TO '
+   'TXT\\.venv\\Lib\\site-packages\\docx\\templates\\default-settings.xml',
+   'DATA'),
+  ('docx\\templates\\default-docx-template\\word\\fontTable.xml',
+   'J:\\PROJECT\\Python project\\EPUB TO '
+   'TXT\\.venv\\Lib\\site-packages\\docx\\templates\\default-docx-template\\word\\fontTable.xml',
+   'DATA'),
+  ('docx\\templates\\default-docx-template\\customXml\\itemProps1.xml',
+   'J:\\PROJECT\\Python project\\EPUB TO '
+   'TXT\\.venv\\Lib\\site-packages\\docx\\templates\\default-docx-template\\customXml\\itemProps1.xml',
+   'DATA'),
+  ('docx\\templates\\default-docx-template\\customXml\\_rels\\item1.xml.rels',
+   'J:\\PROJECT\\Python project\\EPUB TO '
+   'TXT\\.venv\\Lib\\site-packages\\docx\\templates\\default-docx-template\\customXml\\_rels\\item1.xml.rels',
+   'DATA'),
+  ('docx\\templates\\default-header.xml',
+   'J:\\PROJECT\\Python project\\EPUB TO '
+   'TXT\\.venv\\Lib\\site-packages\\docx\\templates\\default-header.xml',
+   'DATA'),
+  ('docx\\templates\\default-docx-template\\word\\_rels\\document.xml.rels',
+   'J:\\PROJECT\\Python project\\EPUB TO '
+   'TXT\\.venv\\Lib\\site-packages\\docx\\templates\\default-docx-template\\word\\_rels\\document.xml.rels',
+   'DATA'),
+  ('docx\\templates\\default-docx-template\\docProps\\core.xml',
+   'J:\\PROJECT\\Python project\\EPUB TO '
+   'TXT\\.venv\\Lib\\site-packages\\docx\\templates\\default-docx-template\\docProps\\core.xml',
+   'DATA'),
+  ('docx\\templates\\default-docx-template\\[Content_Types].xml',
+   'J:\\PROJECT\\Python project\\EPUB TO '
+   'TXT\\.venv\\Lib\\site-packages\\docx\\templates\\default-docx-template\\[Content_Types].xml',
+   'DATA'),
+  ('docx\\templates\\default-comments.xml',
+   'J:\\PROJECT\\Python project\\EPUB TO '
+   'TXT\\.venv\\Lib\\site-packages\\docx\\templates\\default-comments.xml',
+   'DATA'),
+  ('docx\\templates\\default-docx-template\\word\\document.xml',
+   'J:\\PROJECT\\Python project\\EPUB TO '
+   'TXT\\.venv\\Lib\\site-packages\\docx\\templates\\default-docx-template\\word\\document.xml',
+   'DATA'),
+  ('docx\\templates\\default-docx-template\\word\\theme\\theme1.xml',
+   'J:\\PROJECT\\Python project\\EPUB TO '
+   'TXT\\.venv\\Lib\\site-packages\\docx\\templates\\default-docx-template\\word\\theme\\theme1.xml',
+   'DATA'),
+  ('chardet\\models\\models.bin',
+   'J:\\PROJECT\\Python project\\EPUB TO '
+   'TXT\\.venv\\Lib\\site-packages\\chardet\\models\\models.bin',
+   'DATA'),
+  ('chardet\\models\\training_metadata.yaml',
+   'J:\\PROJECT\\Python project\\EPUB TO '
+   'TXT\\.venv\\Lib\\site-packages\\chardet\\models\\training_metadata.yaml',
+   'DATA'),
+  ('chardet\\models\\rowmax.bin',
+   'J:\\PROJECT\\Python project\\EPUB TO '
+   'TXT\\.venv\\Lib\\site-packages\\chardet\\models\\rowmax.bin',
+   'DATA'),
+  ('chardet\\models\\idf.bin',
+   'J:\\PROJECT\\Python project\\EPUB TO '
+   'TXT\\.venv\\Lib\\site-packages\\chardet\\models\\idf.bin',
+   'DATA'),
+  ('chardet\\models\\confusion.bin',
+   'J:\\PROJECT\\Python project\\EPUB TO '
+   'TXT\\.venv\\Lib\\site-packages\\chardet\\models\\confusion.bin',
+   'DATA'),
+  ('chardet\\py.typed',
+   'J:\\PROJECT\\Python project\\EPUB TO '
+   'TXT\\.venv\\Lib\\site-packages\\chardet\\py.typed',
+   'DATA'),
+  ('lxml\\isoschematron\\resources\\xsl\\iso-schematron-xslt1\\readme.txt',
+   'J:\\PROJECT\\Python project\\EPUB TO '
+   'TXT\\.venv\\Lib\\site-packages\\lxml\\isoschematron\\resources\\xsl\\iso-schematron-xslt1\\readme.txt',
+   'DATA'),
+  ('lxml\\isoschematron\\resources\\xsl\\XSD2Schtrn.xsl',
+   'J:\\PROJECT\\Python project\\EPUB TO '
+   'TXT\\.venv\\Lib\\site-packages\\lxml\\isoschematron\\resources\\xsl\\XSD2Schtrn.xsl',
+   'DATA'),
+  ('lxml\\isoschematron\\resources\\xsl\\iso-schematron-xslt1\\iso_schematron_skeleton_for_xslt1.xsl',
+   'J:\\PROJECT\\Python project\\EPUB TO '
+   'TXT\\.venv\\Lib\\site-packages\\lxml\\isoschematron\\resources\\xsl\\iso-schematron-xslt1\\iso_schematron_skeleton_for_xslt1.xsl',
+   'DATA'),
+  ('lxml\\isoschematron\\resources\\xsl\\iso-schematron-xslt1\\iso_abstract_expand.xsl',
+   'J:\\PROJECT\\Python project\\EPUB TO '
+   'TXT\\.venv\\Lib\\site-packages\\lxml\\isoschematron\\resources\\xsl\\iso-schematron-xslt1\\iso_abstract_expand.xsl',
+   'DATA'),
+  ('lxml\\isoschematron\\resources\\rng\\iso-schematron.rng',
+   'J:\\PROJECT\\Python project\\EPUB TO '
+   'TXT\\.venv\\Lib\\site-packages\\lxml\\isoschematron\\resources\\rng\\iso-schematron.rng',
+   'DATA'),
+  ('lxml\\isoschematron\\resources\\xsl\\RNG2Schtrn.xsl',
+   'J:\\PROJECT\\Python project\\EPUB TO '
+   'TXT\\.venv\\Lib\\site-packages\\lxml\\isoschematron\\resources\\xsl\\RNG2Schtrn.xsl',
+   'DATA'),
+  ('lxml\\isoschematron\\resources\\xsl\\iso-schematron-xslt1\\iso_svrl_for_xslt1.xsl',
+   'J:\\PROJECT\\Python project\\EPUB TO '
+   'TXT\\.venv\\Lib\\site-packages\\lxml\\isoschematron\\resources\\xsl\\iso-schematron-xslt1\\iso_svrl_for_xslt1.xsl',
+   'DATA'),
+  ('lxml\\isoschematron\\resources\\xsl\\iso-schematron-xslt1\\iso_schematron_message.xsl',
+   'J:\\PROJECT\\Python project\\EPUB TO '
+   'TXT\\.venv\\Lib\\site-packages\\lxml\\isoschematron\\resources\\xsl\\iso-schematron-xslt1\\iso_schematron_message.xsl',
+   'DATA'),
+  ('lxml\\isoschematron\\resources\\xsl\\iso-schematron-xslt1\\iso_dsdl_include.xsl',
+   'J:\\PROJECT\\Python project\\EPUB TO '
+   'TXT\\.venv\\Lib\\site-packages\\lxml\\isoschematron\\resources\\xsl\\iso-schematron-xslt1\\iso_dsdl_include.xsl',
+   'DATA'),
+  ('PySide6\\translations\\qt_help_gl.qm',
+   'J:\\PROJECT\\Python project\\EPUB TO '
+   'TXT\\.venv\\Lib\\site-packages\\PySide6\\translations\\qt_help_gl.qm',
+   'DATA'),
+  ('PySide6\\translations\\qt_ko.qm',
+   'J:\\PROJECT\\Python project\\EPUB TO '
+   'TXT\\.venv\\Lib\\site-packages\\PySide6\\translations\\qt_ko.qm',
+   'DATA'),
+  ('PySide6\\translations\\qt_da.qm',
+   'J:\\PROJECT\\Python project\\EPUB TO '
+   'TXT\\.venv\\Lib\\site-packages\\PySide6\\translations\\qt_da.qm',
+   'DATA'),
+  ('PySide6\\translations\\qtbase_ja.qm',
+   'J:\\PROJECT\\Python project\\EPUB TO '
+   'TXT\\.venv\\Lib\\site-packages\\PySide6\\translations\\qtbase_ja.qm',
+   'DATA'),
+  ('PySide6\\translations\\qtbase_it.qm',
+   'J:\\PROJECT\\Python project\\EPUB TO '
+   'TXT\\.venv\\Lib\\site-packages\\PySide6\\translations\\qtbase_it.qm',
+   'DATA'),
+  ('PySide6\\translations\\qt_help_hu.qm',
+   'J:\\PROJECT\\Python project\\EPUB TO '
+   'TXT\\.venv\\Lib\\site-packages\\PySide6\\translations\\qt_help_hu.qm',
+   'DATA'),
+  ('PySide6\\translations\\qt_lg.qm',
+   'J:\\PROJECT\\Python project\\EPUB TO '
+   'TXT\\.venv\\Lib\\site-packages\\PySide6\\translations\\qt_lg.qm',
+   'DATA'),
+  ('PySide6\\translations\\qt_help_uk.qm',
+   'J:\\PROJECT\\Python project\\EPUB TO '
+   'TXT\\.venv\\Lib\\site-packages\\PySide6\\translations\\qt_help_uk.qm',
+   'DATA'),
+  ('PySide6\\translations\\qt_sv.qm',
+   'J:\\PROJECT\\Python project\\EPUB TO '
+   'TXT\\.venv\\Lib\\site-packages\\PySide6\\translations\\qt_sv.qm',
+   'DATA'),
+  ('PySide6\\translations\\qt_help_sk.qm',
+   'J:\\PROJECT\\Python project\\EPUB TO '
+   'TXT\\.venv\\Lib\\site-packages\\PySide6\\translations\\qt_help_sk.qm',
+   'DATA'),
+  ('PySide6\\translations\\qt_ca.qm',
+   'J:\\PROJECT\\Python project\\EPUB TO '
+   'TXT\\.venv\\Lib\\site-packages\\PySide6\\translations\\qt_ca.qm',
+   'DATA'),
+  ('PySide6\\translations\\qtbase_de.qm',
+   'J:\\PROJECT\\Python project\\EPUB TO '
+   'TXT\\.venv\\Lib\\site-packages\\PySide6\\translations\\qtbase_de.qm',
+   'DATA'),
+  ('PySide6\\translations\\qtbase_sv.qm',
+   'J:\\PROJECT\\Python project\\EPUB TO '
+   'TXT\\.venv\\Lib\\site-packages\\PySide6\\translations\\qtbase_sv.qm',
+   'DATA'),
+  ('PySide6\\translations\\qt_help_de.qm',
+   'J:\\PROJECT\\Python project\\EPUB TO '
+   'TXT\\.venv\\Lib\\site-packages\\PySide6\\translations\\qt_help_de.qm',
+   'DATA'),
+  ('PySide6\\translations\\qt_help_it.qm',
+   'J:\\PROJECT\\Python project\\EPUB TO '
+   'TXT\\.venv\\Lib\\site-packages\\PySide6\\translations\\qt_help_it.qm',
+   'DATA'),
+  ('PySide6\\translations\\qtbase_sk.qm',
+   'J:\\PROJECT\\Python project\\EPUB TO '
+   'TXT\\.venv\\Lib\\site-packages\\PySide6\\translations\\qtbase_sk.qm',
+   'DATA'),
+  ('PySide6\\translations\\qt_hu.qm',
+   'J:\\PROJECT\\Python project\\EPUB TO '
+   'TXT\\.venv\\Lib\\site-packages\\PySide6\\translations\\qt_hu.qm',
+   'DATA'),
+  ('PySide6\\translations\\qt_tr.qm',
+   'J:\\PROJECT\\Python project\\EPUB TO '
+   'TXT\\.venv\\Lib\\site-packages\\PySide6\\translations\\qt_tr.qm',
+   'DATA'),
+  ('PySide6\\translations\\qtbase_lv.qm',
+   'J:\\PROJECT\\Python project\\EPUB TO '
+   'TXT\\.venv\\Lib\\site-packages\\PySide6\\translations\\qtbase_lv.qm',
+   'DATA'),
+  ('PySide6\\translations\\qt_help_hr.qm',
+   'J:\\PROJECT\\Python project\\EPUB TO '
+   'TXT\\.venv\\Lib\\site-packages\\PySide6\\translations\\qt_help_hr.qm',
+   'DATA'),
+  ('PySide6\\translations\\qt_help_ka.qm',
+   'J:\\PROJECT\\Python project\\EPUB TO '
+   'TXT\\.venv\\Lib\\site-packages\\PySide6\\translations\\qt_help_ka.qm',
+   'DATA'),
+  ('PySide6\\translations\\qt_help_bg.qm',
+   'J:\\PROJECT\\Python project\\EPUB TO '
+   'TXT\\.venv\\Lib\\site-packages\\PySide6\\translations\\qt_help_bg.qm',
+   'DATA'),
+  ('PySide6\\translations\\qt_cs.qm',
+   'J:\\PROJECT\\Python project\\EPUB TO '
+   'TXT\\.venv\\Lib\\site-packages\\PySide6\\translations\\qt_cs.qm',
+   'DATA'),
+  ('PySide6\\translations\\qt_help_zh_CN.qm',
+   'J:\\PROJECT\\Python project\\EPUB TO '
+   'TXT\\.venv\\Lib\\site-packages\\PySide6\\translations\\qt_help_zh_CN.qm',
+   'DATA'),
+  ('PySide6\\translations\\qt_help_nl.qm',
+   'J:\\PROJECT\\Python project\\EPUB TO '
+   'TXT\\.venv\\Lib\\site-packages\\PySide6\\translations\\qt_help_nl.qm',
+   'DATA'),
+  ('PySide6\\translations\\qtbase_ca.qm',
+   'J:\\PROJECT\\Python project\\EPUB TO '
+   'TXT\\.venv\\Lib\\site-packages\\PySide6\\translations\\qtbase_ca.qm',
+   'DATA'),
+  ('PySide6\\translations\\qtbase_lg.qm',
+   'J:\\PROJECT\\Python project\\EPUB TO '
+   'TXT\\.venv\\Lib\\site-packages\\PySide6\\translations\\qtbase_lg.qm',
+   'DATA'),
+  ('PySide6\\translations\\qtbase_da.qm',
+   'J:\\PROJECT\\Python project\\EPUB TO '
+   'TXT\\.venv\\Lib\\site-packages\\PySide6\\translations\\qtbase_da.qm',
+   'DATA'),
+  ('PySide6\\translations\\qt_lv.qm',
+   'J:\\PROJECT\\Python project\\EPUB TO '
+   'TXT\\.venv\\Lib\\site-packages\\PySide6\\translations\\qt_lv.qm',
+   'DATA'),
+  ('PySide6\\translations\\qtbase_hr.qm',
+   'J:\\PROJECT\\Python project\\EPUB TO '
+   'TXT\\.venv\\Lib\\site-packages\\PySide6\\translations\\qtbase_hr.qm',
+   'DATA'),
+  ('PySide6\\translations\\qtbase_ka.qm',
+   'J:\\PROJECT\\Python project\\EPUB TO '
+   'TXT\\.venv\\Lib\\site-packages\\PySide6\\translations\\qtbase_ka.qm',
+   'DATA'),
+  ('PySide6\\translations\\qt_pt_BR.qm',
+   'J:\\PROJECT\\Python project\\EPUB TO '
+   'TXT\\.venv\\Lib\\site-packages\\PySide6\\translations\\qt_pt_BR.qm',
+   'DATA'),
+  ('PySide6\\translations\\qtbase_gd.qm',
+   'J:\\PROJECT\\Python project\\EPUB TO '
+   'TXT\\.venv\\Lib\\site-packages\\PySide6\\translations\\qtbase_gd.qm',
+   'DATA'),
+  ('PySide6\\translations\\qt_hr.qm',
+   'J:\\PROJECT\\Python project\\EPUB TO '
+   'TXT\\.venv\\Lib\\site-packages\\PySide6\\translations\\qt_hr.qm',
+   'DATA'),
+  ('PySide6\\translations\\qt_help_sv.qm',
+   'J:\\PROJECT\\Python project\\EPUB TO '
+   'TXT\\.venv\\Lib\\site-packages\\PySide6\\translations\\qt_help_sv.qm',
+   'DATA'),
+  ('PySide6\\translations\\qtbase_zh_CN.qm',
+   'J:\\PROJECT\\Python project\\EPUB TO '
+   'TXT\\.venv\\Lib\\site-packages\\PySide6\\translations\\qtbase_zh_CN.qm',
+   'DATA'),
+  ('PySide6\\translations\\qt_he.qm',
+   'J:\\PROJECT\\Python project\\EPUB TO '
+   'TXT\\.venv\\Lib\\site-packages\\PySide6\\translations\\qt_he.qm',
+   'DATA'),
+  ('PySide6\\translations\\qtbase_zh_TW.qm',
+   'J:\\PROJECT\\Python project\\EPUB TO '
+   'TXT\\.venv\\Lib\\site-packages\\PySide6\\translations\\qtbase_zh_TW.qm',
+   'DATA'),
+  ('PySide6\\translations\\qtbase_bg.qm',
+   'J:\\PROJECT\\Python project\\EPUB TO '
+   'TXT\\.venv\\Lib\\site-packages\\PySide6\\translations\\qtbase_bg.qm',
+   'DATA'),
+  ('PySide6\\translations\\qt_uk.qm',
+   'J:\\PROJECT\\Python project\\EPUB TO '
+   'TXT\\.venv\\Lib\\site-packages\\PySide6\\translations\\qt_uk.qm',
+   'DATA'),
+  ('PySide6\\translations\\qt_help_sl.qm',
+   'J:\\PROJECT\\Python project\\EPUB TO '
+   'TXT\\.venv\\Lib\\site-packages\\PySide6\\translations\\qt_help_sl.qm',
+   'DATA'),
+  ('PySide6\\translations\\qt_de.qm',
+   'J:\\PROJECT\\Python project\\EPUB TO '
+   'TXT\\.venv\\Lib\\site-packages\\PySide6\\translations\\qt_de.qm',
+   'DATA'),
+  ('PySide6\\translations\\qt_help_da.qm',
+   'J:\\PROJECT\\Python project\\EPUB TO '
+   'TXT\\.venv\\Lib\\site-packages\\PySide6\\translations\\qt_help_da.qm',
+   'DATA'),
+  ('PySide6\\translations\\qtbase_ru.qm',
+   'J:\\PROJECT\\Python project\\EPUB TO '
+   'TXT\\.venv\\Lib\\site-packages\\PySide6\\translations\\qtbase_ru.qm',
+   'DATA'),
+  ('PySide6\\translations\\qtbase_nn.qm',
+   'J:\\PROJECT\\Python project\\EPUB TO '
+   'TXT\\.venv\\Lib\\site-packages\\PySide6\\translations\\qtbase_nn.qm',
+   'DATA'),
+  ('PySide6\\translations\\qtbase_pl.qm',
+   'J:\\PROJECT\\Python project\\EPUB TO '
+   'TXT\\.venv\\Lib\\site-packages\\PySide6\\translations\\qtbase_pl.qm',
+   'DATA'),
+  ('PySide6\\translations\\qt_nn.qm',
+   'J:\\PROJECT\\Python project\\EPUB TO '
+   'TXT\\.venv\\Lib\\site-packages\\PySide6\\translations\\qt_nn.qm',
+   'DATA'),
+  ('PySide6\\translations\\qtbase_nl.qm',
+   'J:\\PROJECT\\Python project\\EPUB TO '
+   'TXT\\.venv\\Lib\\site-packages\\PySide6\\translations\\qtbase_nl.qm',
+   'DATA'),
+  ('PySide6\\translations\\qtbase_ko.qm',
+   'J:\\PROJECT\\Python project\\EPUB TO '
+   'TXT\\.venv\\Lib\\site-packages\\PySide6\\translations\\qtbase_ko.qm',
+   'DATA'),
+  ('PySide6\\translations\\qt_ja.qm',
+   'J:\\PROJECT\\Python project\\EPUB TO '
+   'TXT\\.venv\\Lib\\site-packages\\PySide6\\translations\\qt_ja.qm',
+   'DATA'),
+  ('PySide6\\translations\\qtbase_es.qm',
+   'J:\\PROJECT\\Python project\\EPUB TO '
+   'TXT\\.venv\\Lib\\site-packages\\PySide6\\translations\\qtbase_es.qm',
+   'DATA'),
+  ('PySide6\\translations\\qt_ru.qm',
+   'J:\\PROJECT\\Python project\\EPUB TO '
+   'TXT\\.venv\\Lib\\site-packages\\PySide6\\translations\\qt_ru.qm',
+   'DATA'),
+  ('PySide6\\translations\\qtbase_fr.qm',
+   'J:\\PROJECT\\Python project\\EPUB TO '
+   'TXT\\.venv\\Lib\\site-packages\\PySide6\\translations\\qtbase_fr.qm',
+   'DATA'),
+  ('PySide6\\translations\\qt_help_nn.qm',
+   'J:\\PROJECT\\Python project\\EPUB TO '
+   'TXT\\.venv\\Lib\\site-packages\\PySide6\\translations\\qt_help_nn.qm',
+   'DATA'),
+  ('PySide6\\translations\\qt_help_cs.qm',
+   'J:\\PROJECT\\Python project\\EPUB TO '
+   'TXT\\.venv\\Lib\\site-packages\\PySide6\\translations\\qt_help_cs.qm',
+   'DATA'),
+  ('PySide6\\translations\\qtbase_uk.qm',
+   'J:\\PROJECT\\Python project\\EPUB TO '
+   'TXT\\.venv\\Lib\\site-packages\\PySide6\\translations\\qtbase_uk.qm',
+   'DATA'),
+  ('PySide6\\translations\\qt_help_ru.qm',
+   'J:\\PROJECT\\Python project\\EPUB TO '
+   'TXT\\.venv\\Lib\\site-packages\\PySide6\\translations\\qt_help_ru.qm',
+   'DATA'),
+  ('PySide6\\translations\\qt_help_pt_BR.qm',
+   'J:\\PROJECT\\Python project\\EPUB TO '
+   'TXT\\.venv\\Lib\\site-packages\\PySide6\\translations\\qt_help_pt_BR.qm',
+   'DATA'),
+  ('PySide6\\translations\\qt_pt_PT.qm',
+   'J:\\PROJECT\\Python project\\EPUB TO '
+   'TXT\\.venv\\Lib\\site-packages\\PySide6\\translations\\qt_pt_PT.qm',
+   'DATA'),
+  ('PySide6\\translations\\qt_bg.qm',
+   'J:\\PROJECT\\Python project\\EPUB TO '
+   'TXT\\.venv\\Lib\\site-packages\\PySide6\\translations\\qt_bg.qm',
+   'DATA'),
+  ('PySide6\\translations\\qtbase_pt_BR.qm',
+   'J:\\PROJECT\\Python project\\EPUB TO '
+   'TXT\\.venv\\Lib\\site-packages\\PySide6\\translations\\qtbase_pt_BR.qm',
+   'DATA'),
+  ('PySide6\\translations\\qt_es.qm',
+   'J:\\PROJECT\\Python project\\EPUB TO '
+   'TXT\\.venv\\Lib\\site-packages\\PySide6\\translations\\qt_es.qm',
+   'DATA'),
+  ('PySide6\\translations\\qt_sl.qm',
+   'J:\\PROJECT\\Python project\\EPUB TO '
+   'TXT\\.venv\\Lib\\site-packages\\PySide6\\translations\\qt_sl.qm',
+   'DATA'),
+  ('PySide6\\translations\\qtbase_tr.qm',
+   'J:\\PROJECT\\Python project\\EPUB TO '
+   'TXT\\.venv\\Lib\\site-packages\\PySide6\\translations\\qtbase_tr.qm',
+   'DATA'),
+  ('PySide6\\translations\\qt_ka.qm',
+   'J:\\PROJECT\\Python project\\EPUB TO '
+   'TXT\\.venv\\Lib\\site-packages\\PySide6\\translations\\qt_ka.qm',
+   'DATA'),
+  ('PySide6\\translations\\qt_help_ko.qm',
+   'J:\\PROJECT\\Python project\\EPUB TO '
+   'TXT\\.venv\\Lib\\site-packages\\PySide6\\translations\\qt_help_ko.qm',
+   'DATA'),
+  ('PySide6\\translations\\qt_nl.qm',
+   'J:\\PROJECT\\Python project\\EPUB TO '
+   'TXT\\.venv\\Lib\\site-packages\\PySide6\\translations\\qt_nl.qm',
+   'DATA'),
+  ('PySide6\\translations\\qt_help_zh_TW.qm',
+   'J:\\PROJECT\\Python project\\EPUB TO '
+   'TXT\\.venv\\Lib\\site-packages\\PySide6\\translations\\qt_help_zh_TW.qm',
+   'DATA'),
+  ('PySide6\\translations\\qt_help_ca.qm',
+   'J:\\PROJECT\\Python project\\EPUB TO '
+   'TXT\\.venv\\Lib\\site-packages\\PySide6\\translations\\qt_help_ca.qm',
+   'DATA'),
+  ('PySide6\\translations\\qt_sk.qm',
+   'J:\\PROJECT\\Python project\\EPUB TO '
+   'TXT\\.venv\\Lib\\site-packages\\PySide6\\translations\\qt_sk.qm',
+   'DATA'),
+  ('PySide6\\translations\\qt_help_tr.qm',
+   'J:\\PROJECT\\Python project\\EPUB TO '
+   'TXT\\.venv\\Lib\\site-packages\\PySide6\\translations\\qt_help_tr.qm',
+   'DATA'),
+  ('PySide6\\translations\\qt_help_en.qm',
+   'J:\\PROJECT\\Python project\\EPUB TO '
+   'TXT\\.venv\\Lib\\site-packages\\PySide6\\translations\\qt_help_en.qm',
+   'DATA'),
+  ('PySide6\\translations\\qt_help_es.qm',
+   'J:\\PROJECT\\Python project\\EPUB TO '
+   'TXT\\.venv\\Lib\\site-packages\\PySide6\\translations\\qt_help_es.qm',
+   'DATA'),
+  ('PySide6\\translations\\qtbase_fa.qm',
+   'J:\\PROJECT\\Python project\\EPUB TO '
+   'TXT\\.venv\\Lib\\site-packages\\PySide6\\translations\\qtbase_fa.qm',
+   'DATA'),
+  ('PySide6\\translations\\qt_gl.qm',
+   'J:\\PROJECT\\Python project\\EPUB TO '
+   'TXT\\.venv\\Lib\\site-packages\\PySide6\\translations\\qt_gl.qm',
+   'DATA'),
+  ('PySide6\\translations\\qt_zh_TW.qm',
+   'J:\\PROJECT\\Python project\\EPUB TO '
+   'TXT\\.venv\\Lib\\site-packages\\PySide6\\translations\\qt_zh_TW.qm',
+   'DATA'),
+  ('PySide6\\translations\\qt_help_ar.qm',
+   'J:\\PROJECT\\Python project\\EPUB TO '
+   'TXT\\.venv\\Lib\\site-packages\\PySide6\\translations\\qt_help_ar.qm',
+   'DATA'),
+  ('PySide6\\translations\\qt_gd.qm',
+   'J:\\PROJECT\\Python project\\EPUB TO '
+   'TXT\\.venv\\Lib\\site-packages\\PySide6\\translations\\qt_gd.qm',
+   'DATA'),
+  ('PySide6\\translations\\qt_lt.qm',
+   'J:\\PROJECT\\Python project\\EPUB TO '
+   'TXT\\.venv\\Lib\\site-packages\\PySide6\\translations\\qt_lt.qm',
+   'DATA'),
+  ('PySide6\\translations\\qtbase_en.qm',
+   'J:\\PROJECT\\Python project\\EPUB TO '
+   'TXT\\.venv\\Lib\\site-packages\\PySide6\\translations\\qtbase_en.qm',
+   'DATA'),
+  ('PySide6\\translations\\qtbase_fi.qm',
+   'J:\\PROJECT\\Python project\\EPUB TO '
+   'TXT\\.venv\\Lib\\site-packages\\PySide6\\translations\\qtbase_fi.qm',
+   'DATA'),
+  ('PySide6\\translations\\qtbase_hu.qm',
+   'J:\\PROJECT\\Python project\\EPUB TO '
+   'TXT\\.venv\\Lib\\site-packages\\PySide6\\translations\\qtbase_hu.qm',
+   'DATA'),
+  ('PySide6\\translations\\qtbase_cs.qm',
+   'J:\\PROJECT\\Python project\\EPUB TO '
+   'TXT\\.venv\\Lib\\site-packages\\PySide6\\translations\\qtbase_cs.qm',
+   'DATA'),
+  ('PySide6\\translations\\qt_fr.qm',
+   'J:\\PROJECT\\Python project\\EPUB TO '
+   'TXT\\.venv\\Lib\\site-packages\\PySide6\\translations\\qt_fr.qm',
+   'DATA'),
+  ('PySide6\\translations\\qt_en.qm',
+   'J:\\PROJECT\\Python project\\EPUB TO '
+   'TXT\\.venv\\Lib\\site-packages\\PySide6\\translations\\qt_en.qm',
+   'DATA'),
+  ('PySide6\\translations\\qt_help_fr.qm',
+   'J:\\PROJECT\\Python project\\EPUB TO '
+   'TXT\\.venv\\Lib\\site-packages\\PySide6\\translations\\qt_help_fr.qm',
+   'DATA'),
+  ('PySide6\\translations\\qt_zh_CN.qm',
+   'J:\\PROJECT\\Python project\\EPUB TO '
+   'TXT\\.venv\\Lib\\site-packages\\PySide6\\translations\\qt_zh_CN.qm',
+   'DATA'),
+  ('PySide6\\translations\\qt_help_ja.qm',
+   'J:\\PROJECT\\Python project\\EPUB TO '
+   'TXT\\.venv\\Lib\\site-packages\\PySide6\\translations\\qt_help_ja.qm',
+   'DATA'),
+  ('PySide6\\translations\\qt_fa.qm',
+   'J:\\PROJECT\\Python project\\EPUB TO '
+   'TXT\\.venv\\Lib\\site-packages\\PySide6\\translations\\qt_fa.qm',
+   'DATA'),
+  ('PySide6\\translations\\qt_it.qm',
+   'J:\\PROJECT\\Python project\\EPUB TO '
+   'TXT\\.venv\\Lib\\site-packages\\PySide6\\translations\\qt_it.qm',
+   'DATA'),
+  ('PySide6\\translations\\qt_fi.qm',
+   'J:\\PROJECT\\Python project\\EPUB TO '
+   'TXT\\.venv\\Lib\\site-packages\\PySide6\\translations\\qt_fi.qm',
+   'DATA'),
+  ('PySide6\\translations\\qtbase_he.qm',
+   'J:\\PROJECT\\Python project\\EPUB TO '
+   'TXT\\.venv\\Lib\\site-packages\\PySide6\\translations\\qtbase_he.qm',
+   'DATA'),
+  ('PySide6\\translations\\qt_ar.qm',
+   'J:\\PROJECT\\Python project\\EPUB TO '
+   'TXT\\.venv\\Lib\\site-packages\\PySide6\\translations\\qt_ar.qm',
+   'DATA'),
+  ('PySide6\\translations\\qtbase_ar.qm',
+   'J:\\PROJECT\\Python project\\EPUB TO '
+   'TXT\\.venv\\Lib\\site-packages\\PySide6\\translations\\qtbase_ar.qm',
+   'DATA'),
+  ('PySide6\\translations\\qt_help_pl.qm',
+   'J:\\PROJECT\\Python project\\EPUB TO '
+   'TXT\\.venv\\Lib\\site-packages\\PySide6\\translations\\qt_help_pl.qm',
+   'DATA'),
+  ('PySide6\\translations\\qt_pl.qm',
+   'J:\\PROJECT\\Python project\\EPUB TO '
+   'TXT\\.venv\\Lib\\site-packages\\PySide6\\translations\\qt_pl.qm',
+   'DATA'),
+  ('base_library.zip',
+   'J:\\PROJECT\\Python project\\EPUB TO '
+   'TXT\\build\\ebook_debug2\\base_library.zip',
+   'DATA')],
+ 'python314.dll',
+ False,
+ False,
+ False,
+ [],
+ None,
+ None,
+ None)

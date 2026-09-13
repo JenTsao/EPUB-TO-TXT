@@ -1,7 +1,7 @@
 @echo off
 cls
 echo ================================================
-echo          EPUB转TXT工具 v2.1 - 启动脚本
+echo          电子书转换工具 v3.0 - 启动脚本
  echo ================================================
 echo.
 
@@ -40,9 +40,9 @@ if errorlevel 1 (
     echo [成功] 依赖包安装完成！
 )
 
-echo [启动] 正在启动EPUB转TXT工具...
+echo [启动] 正在启动电子书转换工具...
 echo [提示] 首次启动可能需要一些时间，请耐心等待...
-python epub_to_txt_converter.py
+python main.py
 
 if errorlevel 1 (
     echo [错误] 工具启动失败

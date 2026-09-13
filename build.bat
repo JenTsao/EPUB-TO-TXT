@@ -20,7 +20,7 @@ if exist dist rmdir /s /q dist
 if exist *.spec del /q *.spec
 
 echo 开始打包...
-pyinstaller --onefile --windowed --name="电子书转换工具" --clean epub_to_txt_converter.py
+pyinstaller --onefile --windowed --name="电子书转换工具" --clean main.py
 
 if errorlevel 1 (
     echo 错误: 打包失败
