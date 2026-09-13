@@ -1,5 +1,7 @@
 """UI 冒烟测试（QT_QPA_PLATFORM=offscreen）。"""
 
+import sys
+
 import pytest
 
 from core.models import BookMetadata
@@ -15,7 +17,9 @@ class TestFileTableModel:
         f2.write_text("x")
         assert model.add_paths([str(f1), str(f2)]) == 2
         assert model.add_paths([str(f1)]) == 0  # 路径去重
-        assert model.add_paths([str(f1).upper()]) == 0  # 大小写不敏感去重（Windows）
+        if sys.platform == "win32":
+            # 大小写不敏感去重仅适用于 Windows 文件系统（os.path.normcase 平台语义）
+            assert model.add_paths([str(f1).upper()]) == 0
         assert model.paths() == [str(f1), str(f2)]
 
     def test_clear(self, tmp_path):
