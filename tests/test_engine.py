@@ -94,6 +94,23 @@ class TestEngineBasics:
         assert all(e[4] == len(f"内容-{p}") for e, p in zip(finished, [str(f1), str(f2)]))
         assert (out / "a.txt").exists() and (out / "b.txt").exists()
 
+    def test_progress_routed_to_correct_path(self, engine_env, tmp_path, monkeypatch):
+        """回归测试：submit 循环中的 progress 回调必须捕获各自的 path，
+        而不是所有任务都上报最后一次循环的路径（lambda 闭包晚绑定问题）。"""
+        listener, engine = engine_env
+        monkeypatch.setattr("core.engine.get_extractor", lambda p: _make_extractor())
+        files = [tmp_path / f"file{i}.txt" for i in range(5)]
+        for f in files:
+            f.write_text("x")
+
+        engine.submit([str(f) for f in files], ConversionOptions(str(tmp_path / "out"), "txt"))
+        _wait_batch(listener)
+
+        progress_events = [e for e in listener.events if e[0] == "progress"]
+        # _make_extractor 每个文件上报一次 0.5 进度，路径必须一一对应
+        assert sorted(path for _, path, _ in progress_events) == sorted(str(f) for f in files)
+        assert all(ratio == 0.5 for _, _, ratio in progress_events)
+
     def test_rejects_overlapping_submit(self, engine_env, tmp_path, monkeypatch):
         listener, engine = engine_env
         monkeypatch.setattr("core.engine.get_extractor", lambda p: _make_extractor(delay=0.2))
